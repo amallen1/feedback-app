@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { Container, Wrapper, Title, Form } from "../styles/loginStyles";
 
 export default function Login() {
@@ -11,7 +10,6 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("clicked");
 
     fetch(`${process.env.REACT_APP_BASE_URL}/api/login`, {
       method: "POST",
@@ -32,7 +30,8 @@ export default function Login() {
 
         //navigate after logging in
         setTimeout(() => {
-          navigate("/");
+          console.log("logging in");
+          navigate("/home");
         }, 1000);
       })
       .catch((error) => {
