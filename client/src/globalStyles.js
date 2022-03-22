@@ -14,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`${css`
     --orange: #f49f85;
     --brightBlue: #62bcfa;
 
-    //Buttons
+    /* Buttons */
     --hoverPurple: #c75af6;
     --hoverRoyalBlue: #7c91f9;
     --hoverNavyBlue: #656ea3;
@@ -31,10 +31,15 @@ export const GlobalStyles = createGlobalStyle`${css`
     font-family: "Jost", sans-serif;
   }
 
+  body {
+    /* background-color: pink; */
+    background-color: var(--lightGray);
+  }
+
   button {
     cursor: pointer;
+    border: none;
   }
 `}
-
 
 `;
