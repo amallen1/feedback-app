@@ -14,6 +14,8 @@ export const GlobalStyles = createGlobalStyle`${css`
     --orange: #f49f85;
     --brightBlue: #62bcfa;
 
+    --darkButtonColor: #373f68;
+
     /* Buttons */
     --hoverPurple: #c75af6;
     --hoverRoyalBlue: #7c91f9;
@@ -39,6 +41,10 @@ export const GlobalStyles = createGlobalStyle`${css`
   button {
     cursor: pointer;
     border: none;
+  }
+
+  a {
+    text-decoration: none;
   }
 `}
 
