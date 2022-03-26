@@ -42,7 +42,7 @@ export default function Login() {
     <Container>
       <Wrapper>
         <Title> Product Feedback App</Title>
-        <p>login!</p>
+        <h1>Welcome back!</h1>
 
         <Form onSubmit={handleSubmit}>
           <label>Email:</label>

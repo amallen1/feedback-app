@@ -57,6 +57,7 @@ export default function SignUp() {
     <Container>
       <Wrapper>
         <Title>Sign Up</Title>
+        <h2>Join today!</h2>
         {errorMessage ? (
           <p>This email is already exists. Please enter another email.</p>
         ) : null}
