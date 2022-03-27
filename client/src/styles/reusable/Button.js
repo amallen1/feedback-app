@@ -34,13 +34,13 @@ export const CancelButton = styled(StyledButton)`
 
 export const DeleteButton = styled(StyledButton)`
   :hover {
-    background-color: red;
+    background-color: var(--brightRed);
   }
 `;
 
 export const EditButton = styled(StyledButton)`
   :hover {
-    background-color: #7c91f9;
+    background-color: var(--hoverRoyalBlue);
   }
 `;
 
@@ -63,17 +63,19 @@ export const BackButton = styled.a`
 export const FilterButton = styled.button`
   padding: 0.3125rem 1rem 0.375rem;
   border-radius: 10px;
-  background-color: #f2f4ff;
+  background-color: var(--lightGray);
   font-weight: 600;
-  color: #4661e6;
+  color: var(--royalBlue);
   font-size: 13px;
   text-transform: capitalize;
+
   :hover {
-    background-color: #cfd7ff;
+    background-color: var(--paleBlue);
   }
+
   :active {
-    background-color: #4661e6;
-    color: #fff;
+    background-color: var(--royalBlue);
+    color: var(--white);
   }
   ${({ margin }) => margin && { marginBottom: "1rem" }}
 `;
@@ -81,19 +83,36 @@ export const FilterButton = styled.button`
 export const UpvoteButton = styled.button`
   padding: 0.375rem 1rem 0.4375rem;
   border-radius: 10px;
-  background-color: #f2f4ff;
+  background-color: var(--offWhite);
   font-weight: 600;
-  color: #3a4374;
+  color: var(--lighterNavyBlue);
   font-size: 13px;
+  position: relative;
+ 
+
   :hover {
-    background-color: #cfd7ff;
+    background-color: var(--paleBlue);
   }
+
   :active {
-    background-color: #4661e6;
-    color: #fff;
+    background-color: var(--royalBlue);
+    color: var(--white);
   }
+
   ::before {
     content: url("/assets/shared/icon-arrow-up.svg");
     margin-right: 6px;
+  }
+
+  @media (min-width: 768px) {
+    padding: 1.625rem 0.6875rem 0.5rem;
+
+    ::before {
+      margin: 0;
+      position: absolute;
+      top: 0px;
+      transform: translate(-15%, 25%);
+      margin: 0;
+    }
   }
 `;

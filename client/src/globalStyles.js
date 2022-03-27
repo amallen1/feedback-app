@@ -33,6 +33,14 @@ export const GlobalStyles = createGlobalStyle`${css`
     font-family: "Jost", sans-serif;
   }
 
+  #root {
+    height: 100%;
+  }
+  html,
+  body {
+    height: 100%;
+  }
+
   body {
     /* background-color: pink; */
     background-color: var(--lightGray);
