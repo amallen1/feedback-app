@@ -9,7 +9,7 @@ export const StyledButton = styled.a`
   font-size: 0.8125rem;
   display: inline-block;
   border-radius: 10px;
-  /* text-align: center; //need for button in newfeedback */
+  text-align: center; //need for button in newfeedback
 
   ${({ plus }) =>
     plus &&
@@ -24,9 +24,15 @@ export const StyledButton = styled.a`
   :hover {
     background-color: var(--hoverPurple);
   }
+
+  @media (min-width: 768px) {
+    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
+  }
 `;
 
 export const CancelButton = styled(StyledButton)`
+  background-color: var(--lighterNavyBlue);
   :hover {
     background-color: var(--hoverRoyalBlue);
   }
@@ -88,7 +94,6 @@ export const UpvoteButton = styled.button`
   color: var(--lighterNavyBlue);
   font-size: 13px;
   position: relative;
- 
 
   :hover {
     background-color: var(--paleBlue);

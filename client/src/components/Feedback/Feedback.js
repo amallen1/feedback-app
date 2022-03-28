@@ -91,25 +91,25 @@ const CommentDiv = styled.div`
   }
 `;
 
-const Feedback = () => {
+const Feedback = ({ feedback }) => {
+  // console.log("testing");
+  // console.log(feedback);
   return (
     <Card>
       <Link to="/">
         <MainInfo>
-          <Title>Add tags for solutions</Title>
-          <Description>
-            Easier to search for solutions based on a specific stack.
-          </Description>
-          <FilterButton>category</FilterButton>
+          <Title>{feedback.title}</Title>
+          <Description>{feedback.description}</Description>
+          <FilterButton>{feedback.category}</FilterButton>
         </MainInfo>
       </Link>
 
       <UpvoteDiv>
-        <UpvoteButton>1</UpvoteButton>
+        <UpvoteButton>{feedback.upvotes}</UpvoteButton>
       </UpvoteDiv>
 
       <CommentDiv>
-        <CommentButton>1</CommentButton>
+        <CommentButton>{feedback.comments.length}</CommentButton>
       </CommentDiv>
     </Card>
   );

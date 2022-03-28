@@ -49,3 +49,16 @@ export const Form = styled.form`
     color: var(--buttonTextColor);
   }
 `;
+
+export const Links = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  a:nth-child(1) {
+    margin-bottom: 0.5rem;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+`;

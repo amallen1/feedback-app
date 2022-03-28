@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
+const PORT = 5000;
 require("dotenv").config();
 
 app.use(cors());
@@ -14,9 +15,11 @@ mongoose.connection.once("open", () => {
 });
 
 const userRoutes = require("./routes/user");
+const feedbackRoutes = require("./routes/feedbackRoute");
 
 app.use("/", userRoutes);
+app.use("/", feedbackRoutes);
 
-app.listen(5000, () => {
-  console.log("server running");
+app.listen(PORT, () => {
+  console.log(`server running on port ${PORT}`);
 });

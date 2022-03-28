@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Wrapper, Title, Form } from "../styles/loginStyles";
+import { Container, Wrapper, Title, Form, Links } from "../styles/loginStyles";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -64,7 +64,10 @@ export default function Login() {
           <button>Login!</button>
         </Form>
 
-        <Link to="/signup">Don't have an account?</Link>
+        <Links>
+          <Link to="/">Browse as guest</Link>
+          <Link to="/signup">Don't have an account?</Link>
+        </Links>
       </Wrapper>
     </Container>
   );
