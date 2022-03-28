@@ -13,7 +13,6 @@ export const GlobalStyles = createGlobalStyle`${css`
     --dullGray: #647196;
     --orange: #f49f85;
     --brightBlue: #62bcfa;
-
     --darkButtonColor: #373f68;
 
     /* Buttons */
@@ -53,6 +52,25 @@ export const GlobalStyles = createGlobalStyle`${css`
 
   a {
     text-decoration: none;
+  }
+
+  input {
+    padding: 0.9375rem 1rem 0.875rem;
+  }
+
+  input,
+  textarea {
+    background-color: var(--offWhite);
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    color: var(--lighterDarkBlue);
+
+    &:focus {
+      outline-style: solid;
+      outline-color: var(--royalBlue);
+      outline-width: thin;
+    }
   }
 `}
 

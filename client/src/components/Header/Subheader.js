@@ -23,10 +23,23 @@ const SubheaderContainer = styled.div`
   }
 `;
 
+const Suggestions = styled.div`
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-right: 1rem;
+  }
+
+  span {
+    font-weight: 700;
+  }
+`;
+
 const Search = styled.p`
   font-size: 0.8125rem;
   cursor: pointer;
-  
+
   ::after {
     content: url("/assets/shared/white-arrow.svg");
     margin-left: 7px;
@@ -41,17 +54,21 @@ const Subheader = () => {
   const { width } = useWindowDimensions();
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(isOpen);
-
   return (
     <SubheaderContainer>
       {/* this is going to keep track of suggestions */}
-      {width >= 768 ? "6 suggestions" : null}
+      {width >= 768 ? (
+        <Suggestions>
+          <img src="/assets/suggestions/icon-suggestions.svg" alt="" />
+          <span>6 Suggestions</span>
+        </Suggestions>
+      ) : null}
+
       <Search onClick={() => setIsOpen(!isOpen)}>
         Sort by : <span>Most Upvotes</span>
       </Search>
 
-      <StyledButton plus="true" as={Link} to="/home">
+      <StyledButton plus="true" as={Link} to="/newfeedback">
         Add feedback
       </StyledButton>
     </SubheaderContainer>
