@@ -92,8 +92,6 @@ const CommentDiv = styled.div`
 `;
 
 const Feedback = ({ feedback }) => {
-  // console.log("testing");
-  // console.log(feedback);
   return (
     <Card>
       <Link to="/">
@@ -109,7 +107,9 @@ const Feedback = ({ feedback }) => {
       </UpvoteDiv>
 
       <CommentDiv>
-        <CommentButton>{feedback.comments.length}</CommentButton>
+        <CommentButton>
+          {feedback.comments ? feedback.comments.length : 0}
+        </CommentButton>
       </CommentDiv>
     </Card>
   );

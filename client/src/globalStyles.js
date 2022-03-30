@@ -60,6 +60,7 @@ export const GlobalStyles = createGlobalStyle`${css`
 
   input,
   textarea {
+    width: 100% ;
     background-color: var(--offWhite);
     border: none;
     border-radius: 5px;

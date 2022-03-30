@@ -10,6 +10,7 @@ export const StyledButton = styled.a`
   display: inline-block;
   border-radius: 10px;
   text-align: center; //need for button in newfeedback
+  cursor: pointer;
 
   ${({ plus }) =>
     plus &&
