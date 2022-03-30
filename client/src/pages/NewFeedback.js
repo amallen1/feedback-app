@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
+import styled, { css } from "styled-components/macro";
+import { Link, Navigate } from "react-router-dom";
 import {
   CancelButton,
-  StyledButton,
   BackButton,
+  StyledButton,
 } from "../styles/reusable/Button";
 import ContainerDiv from "../styles/reusable/Container";
 import Dropdown from "../styles/reusable/Dropdown";
-// import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
+import { feedbackAdded } from "../features/feedbacks/feedbacksSlice";
 
 const Nav = styled.div`
   margin-bottom: 3.5em;
@@ -52,15 +56,54 @@ const Description = styled.p`
   color: var(--dullGray);
 `;
 
+const InputWrapper = styled.div`
+  position: relative;
+
+  ${({ error }) =>
+    error &&
+    css`
+      ::after {
+        content: "Can't be empty";
+        color: red;
+        position: absolute;
+        bottom: 2%;
+        left: 0px;
+        font-size: 0.875rem;
+      }
+    `}
+`;
+
 const Input = styled.input`
   margin-bottom: 1.5rem;
+  border: none;
+
+  ${({ error }) =>
+    error &&
+    css`
+      border: 1px solid red;
+    `}
 `;
 
 const TextArea = styled.textarea`
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   height: 120px;
   padding: 1rem;
   resize: none;
+
+  ${({ error }) =>
+    error &&
+    css`
+      border: 1px solid red;
+
+      ::after {
+        content: "texttt";
+        position: relative;
+        top: 0px;
+        left: 0px;
+        height: 50px;
+        width: 50px;
+      }
+    `}
 `;
 
 const ListButton = styled.button`
@@ -104,29 +147,63 @@ const ButtonWrapper = styled.div`
 `;
 
 const NewFeedback = () => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Feature");
   const [description, setDescription] = useState("");
   const categories = ["Feature", "UI", "UX", "Enhancement", "Bug"];
 
-  // const { suggestions, addFeedback } = useContext(SuggestionsContext);
+  const [formError, setFormError] = useState(false);
+
+  //new stuff
+  const initialState = { title: "", category: "Feature", description: "" };
+
+  const validate = () => {
+    //need to work on validation
+    if (title === "" && description === "") {
+      console.log("error, title and description is required");
+      setFormError(true);
+    }
+    // } else if (title === "") {
+    //   console.log("error, title is required");
+    //   setFormError(true);
+    // } else if (description === "") {
+    //   console.log("error, desc is required");
+    //   setFormError(true);
+    // }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //create component
-    const feedback = {
-      // id: uuidv4(),
-      title: title,
-      category: category,
-      description: description,
-      upvotes: 0,
-      status: "suggestions",
-    };
+    validate();
 
-    // addFeedback(feedback);
+    console.log(`Error is ${formError}`);
 
-    // history.push("/");
+    setFormError(false);
+
+    //creates a new feedback object and saves it in redux store
+    dispatch(
+      feedbackAdded({
+        id: nanoid(),
+        title: title,
+        category: category,
+        description: description,
+        upvotes: 0,
+        status: "suggestion",
+        comments: [],
+      })
+    );
+
+    //reseting input values
+    setTitle("");
+    setCategory("Feature");
+    setDescription("");
+
+    // navigate("/");
   };
 
   return (
@@ -144,11 +221,14 @@ const NewFeedback = () => {
         <Form>
           <Label htmlFor="title">Feedback Title</Label>
           <Description>Add a short, descriptive headline</Description>
-          <Input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <InputWrapper error={formError}>
+            <Input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              error={formError}
+            />
+          </InputWrapper>
 
           <Label htmlFor="category">Category</Label>
           <Description>Choose a category for your feedback</Description>
@@ -162,28 +242,20 @@ const NewFeedback = () => {
             Include any specific comments on what should be improved, added,
             etc.
           </Description>
-          <TextArea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></TextArea>
+          <InputWrapper error={formError}>
+            <TextArea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              error={formError}
+            ></TextArea>
+          </InputWrapper>
 
-          {/* FIXME: Doesnt redirect after clicking */}
           <ButtonWrapper>
-            <StyledButton
-              as={Link}
-              to="/"
-              onClick={handleSubmit}
-              margin="true"
-            >
+            <StyledButton onClick={handleSubmit} margin="true">
               Add feedback
             </StyledButton>
 
-            <CancelButton
-              as={Link}
-              to="/"
-              // onClick={() => history.push("/")}
-              margin="true"
-            >
+            <CancelButton as={Link} to="/" margin="true">
               Cancel
             </CancelButton>
           </ButtonWrapper>
