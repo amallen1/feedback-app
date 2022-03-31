@@ -38,6 +38,7 @@ const DropDownListContainer = styled.div`
   position: absolute;
   top: 49px;
   width: 100%;
+  z-index: 15;
 `;
 const DropDownList = styled.ul`
   margin: 1em 0;
