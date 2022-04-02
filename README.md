@@ -44,10 +44,12 @@ Users should be able to:
 
 ### Built with
 
-- Semantic HTML5 markup
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [Styled Components](https://styled-components.com/) - For styles
+- [Express]
+- [NodeJS]
+- [MongoDB]
 
 ### What I learned
 

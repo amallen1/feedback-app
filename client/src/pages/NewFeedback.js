@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
+
 import { CancelButton, BackButton } from "../styles/reusable/Button";
 import ContainerDiv from "../styles/reusable/Container";
 import Dropdown from "../styles/reusable/Dropdown";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
+
 import {
   Form,
   Label,
@@ -40,10 +41,8 @@ const NewFeedback = () => {
     formState: { errors },
   } = useForm();
 
-  console.log(errors);
-
   const onSubmit = (data) => {
-    console.log(data);
+    //data is the object containing the title and description properties
 
     dispatch(
       feedbackAdded({
@@ -56,6 +55,19 @@ const NewFeedback = () => {
         comments: [],
       })
     );
+
+    fetch("http://localhost:5000/api/add_suggestion", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: title,
+        category: category,
+        description: description,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
 
     navigate("/");
   };
@@ -97,8 +109,6 @@ const NewFeedback = () => {
           <Description>Choose a category for your feedback</Description>
           <Dropdown categories={categories} setCategory={setCategory} />
           <input type="hidden" value={category} />
-          {/* {console.log(categor
-            y)} */}
 
           <Label htmlFor="detail">Feedback Detail</Label>
           <Description>
