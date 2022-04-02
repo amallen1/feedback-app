@@ -1,18 +1,24 @@
 import React from "react";
-import { FilterButton } from "../../styles/sharedStyles";
 import { Search } from "../../styles/sidebarStyles";
+import CategoryButton from "./CategoryButton";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
-  return (
-    <Search>
-      <FilterButton>All</FilterButton>
-      <FilterButton>UI</FilterButton>
-      <FilterButton>UX</FilterButton>
-      <FilterButton>Enhancement</FilterButton>
-      <FilterButton>Bug</FilterButton>
-      <FilterButton>Feature</FilterButton>
-    </Search>
-  );
+  //gets all the categories from redux store
+  const categories = useSelector((state) => state.categories);
+
+  const buttons = categories.map((category, index) => {
+    return (
+      <CategoryButton
+        aria-pressed={category.selected}
+        key={index}
+        category={category.name}
+        selected={category.selected}
+      />
+    );
+  });
+
+  return <Search>{buttons}</Search>;
 };
 
 export default Sidebar;

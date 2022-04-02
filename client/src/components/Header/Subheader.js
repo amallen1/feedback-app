@@ -3,6 +3,8 @@ import styled from "styled-components/macro";
 import { StyledButton } from "../../styles/reusable/Button";
 import { Link } from "react-router-dom";
 import useWindowDimensions from "../../hooks/window";
+import CommentDropdown from "../CommentDropdown";
+import { useGetAllSuggestionsQuery } from "../../services/services";
 
 const SubheaderContainer = styled.div`
   display: flex;
@@ -11,6 +13,7 @@ const SubheaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1.5rem 0.5rem;
+  position: relative;
 
   @media (min-width: 768px) {
     border-radius: 10px;
@@ -53,20 +56,36 @@ const Search = styled.p`
 const Subheader = () => {
   const { width } = useWindowDimensions();
   const [isOpen, setIsOpen] = useState(false);
+  const [category, setCategory] = useState("Most Upvotes");
+  const categories = [
+    "Most Upvotes",
+    "Least Upvotes",
+    "Most Comments",
+    "Least Comments",
+  ];
+
+  //data is the list of suggestions
+  const { data, error, isLoading } = useGetAllSuggestionsQuery();
 
   return (
     <SubheaderContainer>
-      {/* this is going to keep track of suggestions */}
       {width >= 768 ? (
         <Suggestions>
           <img src="/assets/suggestions/icon-suggestions.svg" alt="" />
-          <span>6 Suggestions</span>
+          <span> {data ? data.length : null} Suggestions</span>
         </Suggestions>
       ) : null}
 
       <Search onClick={() => setIsOpen(!isOpen)}>
-        Sort by : <span>Most Upvotes</span>
+        Sort by : <span>{category}</span>
       </Search>
+
+      <CommentDropdown
+        categories={categories}
+        setCategory={setCategory}
+        setIsOpen={setIsOpen}
+        isOpen={isOpen}
+      />
 
       <StyledButton plus="true" as={Link} to="/newfeedback">
         Add feedback

@@ -69,14 +69,13 @@ const Dropdown = ({ categories, setCategory }) => {
   const [selectedOption, setSelectedOption] = useState("Feature");
 
   useEffect(() => {
-    // localStorage.getItem("choice");
     console.log(selectedOption);
   }, [selectedOption]);
 
   const onOptionClicked = (value) => {
     setSelectedOption(value);
     setIsOpen(false);
-    // localStorage.setItem("choice", value);
+
     setCategory(value);
   };
 

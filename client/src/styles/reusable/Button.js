@@ -70,9 +70,13 @@ export const BackButton = styled.a`
 export const FilterButton = styled.button`
   padding: 0.3125rem 1rem 0.375rem;
   border-radius: 10px;
-  background-color: var(--lightGray);
+  /* background-color: var(--lightGray); */
+  background-color: ${({ selected }) =>
+    selected ? "var(--royalBlue)" : "var(--lightGray)"};
   font-weight: 600;
-  color: var(--royalBlue);
+  /* color: var(--royalBlue); */
+  color: ${({ selected }) =>
+    selected ? "var(--lightGray)" : "var(--royalBlue)"};
   font-size: 13px;
   text-transform: capitalize;
 
@@ -84,17 +88,19 @@ export const FilterButton = styled.button`
     background-color: var(--royalBlue);
     color: var(--white);
   }
+
   ${({ margin }) => margin && { marginBottom: "1rem" }}
 `;
 
 export const UpvoteButton = styled.button`
-  padding: 0.375rem 1rem 0.4375rem;
+  padding: 0.375rem 1rem 0.4375rem 0.8125rem;
   border-radius: 10px;
   background-color: var(--offWhite);
   font-weight: 600;
   color: var(--lighterNavyBlue);
   font-size: 13px;
   position: relative;
+  width: 69px;
 
   :hover {
     background-color: var(--paleBlue);
@@ -107,17 +113,15 @@ export const UpvoteButton = styled.button`
 
   ::before {
     content: url("/assets/shared/icon-arrow-up.svg");
-    margin-right: 6px;
+    margin-right: 9px;
   }
 
   @media (min-width: 768px) {
-    padding: 1.625rem 0.6875rem 0.5rem;
+    padding: 0.25rem 0.7rem 0.5rem;
+    height: 53px;
+    width: 40px;
 
     ::before {
-      margin: 0;
-      position: absolute;
-      top: 0px;
-      transform: translate(-15%, 25%);
       margin: 0;
     }
   }
