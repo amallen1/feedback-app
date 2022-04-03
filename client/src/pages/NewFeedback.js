@@ -56,6 +56,8 @@ const NewFeedback = () => {
       })
     );
 
+    console.log(category);
+
     fetch("http://localhost:5000/api/add_suggestion", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
