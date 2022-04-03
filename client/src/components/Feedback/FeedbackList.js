@@ -10,23 +10,42 @@ const Container = styled.div`
 
   @media (min-width: 768px) {
     padding: 0;
+    padding-bottom: 1rem;
   }
 `;
 
 const FeedbackList = () => {
-  const [loading, setLoading] = useState(true);
+  const category = useSelector((state) =>
+    state.categories
+      .find(({ selected }) => selected === true)
+      .name
+  );
+
 
   //buttons clicked in category button/sidebar should update here
-  const { data, error, isLoading } = useGetAllSuggestionsQuery();
+  const { data } = useGetAllSuggestionsQuery(undefined, {
+    selectFromResult: ({ data }) => ({
+      data:
+        category === "All"
+          ? data
+          : data?.filter((item) => item.category === category),
+    }),
+  });
 
-  console.log(data);
+
+  useEffect(() => {
+    if (data) console.log("filtered result", data);
+  }, [data]);
 
   return (
     <Container>
-      {data &&
+      {data && data.length > 0 ? (
         data.map((feedback, index) => {
           return <Feedback feedback={feedback} key={index} />;
-        })}
+        })
+      ) : (
+        <EmptyFeedbackList />
+      )}
     </Container>
   );
 };

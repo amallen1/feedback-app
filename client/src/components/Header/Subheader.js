@@ -65,8 +65,9 @@ const Subheader = () => {
   ];
 
   //data is the list of suggestions
-  const { data, error, isLoading } = useGetAllSuggestionsQuery();
+  const { data, error, isLoading, refetch } = useGetAllSuggestionsQuery();
 
+  
   return (
     <SubheaderContainer>
       {width >= 768 ? (
