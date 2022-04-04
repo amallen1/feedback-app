@@ -1,6 +1,8 @@
 # Frontend Mentor - Product feedback app solution
 
-This is a solution to the [Product feedback app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+## Welcome! 👋
+
+This is a full stack solution (MERN) to the [Product feedback app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -21,15 +23,15 @@ This is a solution to the [Product feedback app challenge on Frontend Mentor](ht
 
 Users should be able to:
 
-- [] View the optimal layout for the app depending on their device's screen size
+- [x] View the optimal layout for the app depending on their device's screen size
 - [] See hover states for all interactive elements on the page
 - [] Create, read, update, and delete product feedback requests
 - [] Receive form validations when trying to create/edit feedback requests
-- [] Sort suggestions by most/least upvotes and most/least comments
-- [] Filter suggestions by category
+- [x] Sort suggestions by most/least upvotes and most/least comments
+- [x] Filter suggestions by category
 - [] Add comments and replies to a product feedback request
 - [] Upvote product feedback requests
-- [] **Bonus**: Keep track of any changes, even after refreshing the browser (`localStorage` could be used for this if you're not building out a full-stack app)
+- [] **Bonus**: Keep track of any changes, even after refreshing the browser
 
 ### Screenshot
 
@@ -37,8 +39,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Feedback App](https://jovial-klepon-dc8a53.netlify.app/)
 
 ## My process
 
@@ -50,19 +51,24 @@ Users should be able to:
 - [Express]
 - [NodeJS]
 - [MongoDB]
+- [Redux Toolkit]
+- [RTK Query]
 
 ### What I learned
 
 I learned how to easily handle form validation using a third party package called React Hook Form. It cut down the amount of code I had to write in order to achieve the same results which include forms that handle input errors appropriately, preventing invalid data from being submitted.
 
+I also learned how to use Redux while building this application. Redux Toolkit is the recommended way to develop with Redux and while its been difficult to understand, after experimenting with it I've come to like it alot. Redux helps to store state that is used in several components in one store for easy access anywhere in the application. RTK Query has also been interesting to use, as it simplifies getting and adding data from the server as it takes care of HTTP requests for me automatically as long as I provide the correct baseurl and endpoints. It also updates right away when it finds out data on the server has been mutated so that it matches data in the cache.
+
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+This application is still under development. At the moment a user can sort through the list of feedback items and add feedback while instantly seeing it updated on the homepage. As development continues, users will be able to leave comments on them as well. The roadmap page is also under development but in the future it will show suggestions that have a status of "Planned", "In-Progress", or "Live".
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started) - This helped me to understand how to use Redux in my application
+
+- [RTK Query](https://redux-toolkit.js.org/tutorials/rtk-query) - This is some additional documentation that helped me understand how to use Redux with HTTP requests to get data from the server and add data to the server while keeping it in sync with the Redux store.
 
 ## Author
 

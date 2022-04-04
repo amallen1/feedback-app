@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Feedback from "./Feedback";
 import styled from "styled-components/macro";
 import EmptyFeedbackList from "./EmptyFeedbackList";
 import { useSelector } from "react-redux";
-import { useGetAllSuggestionsQuery } from "../../services/services";
+import { useGetAllSuggestionsQuery } from "../../services/suggestions";
 
 const Container = styled.div`
   padding: 2em 1em 2.4375em 1em;
@@ -15,27 +15,39 @@ const Container = styled.div`
 `;
 
 const FeedbackList = () => {
-  const category = useSelector((state) =>
-    state.categories
-      .find(({ selected }) => selected === true)
-      .name
+  const category = useSelector(
+    (state) => state.categories.find(({ selected }) => selected === true).name
   );
 
+  const sortingCategory = useSelector((state) => state.sortingCategories.value);
 
-  //buttons clicked in category button/sidebar should update here
+  const sortData = (copydata) => {
+    let newData = [];
+    if (copydata !== undefined) {
+      newData = [...copydata];
+
+      if (sortingCategory === "Most Upvotes") {
+        newData.sort((a, b) => b.upvotes - a.upvotes);
+      } else if (sortingCategory === "Least Upvotes") {
+        newData.sort((a, b) => a.upvotes - b.upvotes);
+      } else if (sortingCategory === "Most Comments") {
+        newData.sort((a, b) => b.comments.length - a.comments.length);
+      } else {
+        newData.sort((a, b) => a.comments.length - b.comments.length);
+      }
+    }
+
+    return newData;
+  };
+
   const { data } = useGetAllSuggestionsQuery(undefined, {
     selectFromResult: ({ data }) => ({
       data:
         category === "All"
-          ? data
-          : data?.filter((item) => item.category === category),
+          ? sortData(data)
+          : sortData(data?.filter((item) => item.category === category)),
     }),
   });
-
-
-  useEffect(() => {
-    if (data) console.log("filtered result", data);
-  }, [data]);
 
   return (
     <Container>

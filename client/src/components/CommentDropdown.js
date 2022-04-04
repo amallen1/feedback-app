@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components/macro";
+import { useSelector, useDispatch } from "react-redux";
+import { useGetAllSuggestionsQuery } from "../services/suggestions";
+import { changeSortingCategory } from "../features/feedbacks/sortSlice";
 
 const DropdownContainer = styled.div`
   position: absolute;
@@ -33,10 +36,13 @@ const ListItem = styled.li`
 `;
 
 const Dropdown = ({ categories, setCategory, isOpen, setIsOpen }) => {
+  const dispatch = useDispatch();
+
   const onOptionClicked = (value) => {
-    setCategory(value);
     // console.log(value);
     setIsOpen(false);
+    setCategory(value);
+    dispatch(changeSortingCategory(value));
   };
 
   const items = categories.map((category, index) => {

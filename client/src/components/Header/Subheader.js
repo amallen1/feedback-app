@@ -4,7 +4,8 @@ import { StyledButton } from "../../styles/reusable/Button";
 import { Link } from "react-router-dom";
 import useWindowDimensions from "../../hooks/window";
 import CommentDropdown from "../CommentDropdown";
-import { useGetAllSuggestionsQuery } from "../../services/services";
+import { useGetAllSuggestionsQuery } from "../../services/suggestions";
+import { useSelector } from "react-redux";
 
 const SubheaderContainer = styled.div`
   display: flex;
@@ -64,10 +65,20 @@ const Subheader = () => {
     "Least Comments",
   ];
 
-  //data is the list of suggestions
-  const { data, error, isLoading, refetch } = useGetAllSuggestionsQuery();
+  const filterCategory = useSelector(
+    (state) => state.categories.find(({ selected }) => selected === true).name
+  );
 
-  
+  //buttons clicked in category button/sidebar should update here
+  const { data } = useGetAllSuggestionsQuery(undefined, {
+    selectFromResult: ({ data }) => ({
+      data:
+        filterCategory === "All"
+          ? data
+          : data?.filter((item) => item.category === filterCategory),
+    }),
+  });
+
   return (
     <SubheaderContainer>
       {width >= 768 ? (
