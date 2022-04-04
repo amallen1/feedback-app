@@ -48,11 +48,11 @@ Users should be able to:
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [Styled Components](https://styled-components.com/) - For styles
-- [Express]
-- [NodeJS]
-- [MongoDB]
-- [Redux Toolkit]
-- [RTK Query]
+- [Express](https://expressjs.com/)
+- [NodeJS](https://nodejs.dev/)
+- [MongoDB](https://www.mongodb.com/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
 
 ### What I learned
 
@@ -73,4 +73,4 @@ This application is still under development. At the moment a user can sort throu
 ## Author
 
 - Website - [Portfolio](https://www.aniyaallen.com/)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/amallen1)
+- Frontend Mentor - [@amallen1](https://www.frontendmentor.io/profile/amallen1)
