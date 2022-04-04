@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const suggestionApi = createApi({
   reducerPath: "suggestionApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: "https://productfeedback-app.herokuapp.com/api",
   }),
   tagTypes: ["Suggestions"],
   endpoints: (builder) => ({
