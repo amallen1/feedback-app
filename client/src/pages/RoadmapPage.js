@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const RoadmapPage = () => {
-  return (
-    <div>hello</div>
-  )
-}
+  return <div>currently under development</div>;
+};
 
-export default RoadmapPage
+export default RoadmapPage;
