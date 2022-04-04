@@ -4,7 +4,7 @@
 
 This is a full stack solution (MERN) to the [Product feedback app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-(./assets/preview.jpg)
+![](./assets/preview.jpg)
 
 ## Table of contents
 
