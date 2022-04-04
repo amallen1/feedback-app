@@ -69,7 +69,6 @@ const Subheader = () => {
     (state) => state.categories.find(({ selected }) => selected === true).name
   );
 
-  //buttons clicked in category button/sidebar should update here
   const { data } = useGetAllSuggestionsQuery(undefined, {
     selectFromResult: ({ data }) => ({
       data:

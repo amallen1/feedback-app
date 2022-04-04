@@ -44,7 +44,7 @@ const SuggestionsHeader = () => {
       {width >= 768 ? <Sidebar /> : null}
       {width >= 768 ? <Roadmap /> : null}
 
-      {/* TODO: fix so you don't have to manually close the overlay */}
+      {/* TODO: fix so you don't have to manually close the menu */}
       {isOpen && width < 768 ? <Overlay toggle={setIsOpen} /> : null}
     </Container>
   );
