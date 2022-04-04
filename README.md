@@ -4,6 +4,8 @@
 
 This is a full stack solution (MERN) to the [Product feedback app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
+(./assets/preview.jpg)
+
 ## Table of contents
 
 - [Overview](#overview)
@@ -46,27 +48,30 @@ Users should be able to:
 ### Built with
 
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Styled Components](https://styled-components.com/) - For styles
+- [React](https://reactjs.org/)
+- [Styled Components](https://styled-components.com/)
 - [Express](https://expressjs.com/)
 - [NodeJS](https://nodejs.dev/)
 - [MongoDB](https://www.mongodb.com/)
+- [React Hook Form](https://react-hook-form.com/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
 
 ### What I learned
 
-I learned how to easily handle form validation using a third party package called React Hook Form. It cut down the amount of code I had to write in order to achieve the same results which include forms that handle input errors appropriately, preventing invalid data from being submitted.
+I learned how to easily handle form validation using React Hook Form. It cut down the amount of code I had to write in order to achieve the same results which include forms that handle input errors appropriately, preventing invalid data from being submitted.
 
 I also learned how to use Redux while building this application. Redux Toolkit is the recommended way to develop with Redux and while its been difficult to understand, after experimenting with it I've come to like it alot. Redux helps to store state that is used in several components in one store for easy access anywhere in the application. RTK Query has also been interesting to use, as it simplifies getting and adding data from the server as it takes care of HTTP requests for me automatically as long as I provide the correct baseurl and endpoints. It also updates right away when it finds out data on the server has been mutated so that it matches data in the cache.
 
 ### Continued development
 
-This application is still under development. At the moment a user can sort through the list of feedback items and add feedback while instantly seeing it updated on the homepage. As development continues, users will be able to leave comments on them as well. The roadmap page is also under development but in the future it will show suggestions that have a status of "Planned", "In-Progress", or "Live".
+This application is still under development. At the moment a user can sort through the list of feedback items and add feedback while instantly seeing it added on the suggestions homepage. As development continues, users will be able to create accounts to upvote feedbacks and leave comments on feedback items. The roadmap page is also under development but in the future it will show an organized list of feedback suggestions that have a status of "Planned", "In-Progress", or "Live" similar to the application Trello.
 
 ### Useful resources
 
-- [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started) - This helped me to understand how to use Redux in my application
+- [React Hook Form](https://react-hook-form.com/) - Assisted with form validation.
+
+- [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started) - These docs helped me to understand how to use Redux for this project.
 
 - [RTK Query](https://redux-toolkit.js.org/tutorials/rtk-query) - This is some additional documentation that helped me understand how to use Redux with HTTP requests to get data from the server and add data to the server while keeping it in sync with the Redux store.
 
