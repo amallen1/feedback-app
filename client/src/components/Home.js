@@ -36,6 +36,7 @@ const FirstSection = styled.div`
 const SecondSection = styled.div`
   height: inherit;
   width: 100%;
+  /* overflow: scroll; */
 
   @media (min-width: 1100px) {
     max-width: 825px;

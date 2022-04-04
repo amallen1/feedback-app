@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 
 import { CancelButton, BackButton } from "../styles/reusable/Button";
@@ -23,10 +22,10 @@ import {
   Image,
   Nav,
 } from "../styles/newFeedbackStyles";
-import { feedbackAdded } from "../features/feedbacks/feedbacksSlice";
+
+import { useAddSuggestionMutation } from "../services/suggestions";
 
 const NewFeedback = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
@@ -41,35 +40,23 @@ const NewFeedback = () => {
     formState: { errors },
   } = useForm();
 
+  const [addSuggestion, { isLoading }] = useAddSuggestionMutation();
+
   const onSubmit = (data) => {
     //data is the object containing the title and description properties
-
-    dispatch(
-      feedbackAdded({
-        id: nanoid(),
-        title: title,
-        category: category,
-        description: description,
-        upvotes: 0,
-        status: "suggestion",
-        comments: [],
-      })
-    );
-
-    console.log(category);
-
-    fetch("http://localhost:5000/api/add_suggestion", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: title,
-        category: category,
-        description: description,
-      }),
+    addSuggestion({
+      id: nanoid(),
+      title: title,
+      category: category,
+      description: description,
+      upvotes: 0,
+      status: "suggestion",
+      comments: [],
     })
-      .then((res) => res.json())
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
+
+    // console.log(category);
 
     navigate("/");
   };
