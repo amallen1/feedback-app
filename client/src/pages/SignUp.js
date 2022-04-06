@@ -21,6 +21,7 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
+  const [signupError, setSignupError] = useState("");
   const [accountCreated, setAccountCreated] = useState(false);
 
   const navigate = useNavigate();
@@ -45,15 +46,14 @@ export const SignUp = () => {
           //checking for duplicate email
           console.log(res.error);
           setErrorMessage(true);
+          setSignupError(res.error);
         } else {
           setErrorMessage(false);
           setAccountCreated(true);
 
           dispatch(login({ name: name, username: username }));
 
-          setTimeout(() => {
-            navigate("/");
-          }, 1500);
+          navigate("/");
         }
       })
       .catch((error) => {
@@ -72,9 +72,7 @@ export const SignUp = () => {
     <Container>
       <Wrapper>
         <Title>Sign Up</Title>
-        {errorMessage ? (
-          <p>This email is already exists. Please enter another email.</p>
-        ) : null}
+        {errorMessage ? <p>{signupError}</p> : null}
 
         {accountCreated ? <p>Account successfully created!</p> : null}
 

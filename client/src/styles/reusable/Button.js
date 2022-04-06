@@ -9,7 +9,7 @@ export const StyledButton = styled.a`
   font-size: 0.8125rem;
   display: inline-block;
   border-radius: 10px;
-  text-align: center; //need for button in newfeedback
+  text-align: center;
   cursor: pointer;
 
   ${({ plus }) =>

@@ -24,7 +24,7 @@ export const Login = () => {
 
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
+  const onSubmit = () => {
     setAccountError(false);
     fetch(`${process.env.REACT_APP_BASE_URL}/api/login`, {
       method: "POST",
@@ -41,13 +41,12 @@ export const Login = () => {
         if (res.status === "ok") {
           console.log(res);
           //storing jwt token in local storage
-          localStorage.setItem("token", res.user);
+          localStorage.setItem("token", res.token);
+          localStorage.setItem("name", res.name);
+          localStorage.setItem("username", res.username);
 
           dispatch(login({ name: res.name, username: res.username }));
-
-          setTimeout(() => {
-            navigate("/");
-          }, 1000);
+          navigate("/");
         } else {
           setAccountError(true);
         }
@@ -55,8 +54,6 @@ export const Login = () => {
       .catch((error) => {
         console.log(error);
       });
-
-    fetch(`${process.env.REACT_APP_BASE_URL}/api`);
   };
 
   const {
@@ -72,11 +69,12 @@ export const Login = () => {
         <Title> Product Feedback App</Title>
         <FormTitle>Login</FormTitle>
 
-        {accountError && <ErrorMessage>Account doesn't exist</ErrorMessage>}
+        {accountError && (
+          <ErrorMessage>Username and/or password is incorrect</ErrorMessage>
+        )}
 
-        <Form onSubmit={handleSubmit((e) => onSubmit(e))}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <label>Email</label>
-
           <InputWrapper>
             <input
               type="text"

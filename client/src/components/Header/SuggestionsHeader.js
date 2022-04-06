@@ -7,7 +7,7 @@ import {
   SecondaryTitle,
   Icon,
 } from "../../styles/headerStyles";
-import Overlay from "./Overlay";
+import MobileMenu from "./MobileMenu";
 import Sidebar from "./Sidebar";
 import Roadmap from "./Roadmap";
 import useWindowDimensions from "../../hooks/window";
@@ -17,16 +17,14 @@ const SuggestionsHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { width } = useWindowDimensions();
 
+  //getting the current user who's logged in
   const user = useSelector((state) => state.user.value["name"]);
-
-  console.log(user);
 
   return (
     <Container>
       <Header>
         <Div>
           <Title>Welcome, {user ? user : "Guest"}</Title>
-          {/* Welcome, Guest or welcome Username */}
           <SecondaryTitle>Feedback Board</SecondaryTitle>
         </Div>
 
@@ -51,7 +49,7 @@ const SuggestionsHeader = () => {
       {width >= 768 ? <Roadmap /> : null}
 
       {/* TODO: fix so you don't have to manually close the menu */}
-      {isOpen && width < 768 ? <Overlay toggle={setIsOpen} /> : null}
+      {isOpen && width < 768 ? <MobileMenu toggle={setIsOpen} /> : null}
     </Container>
   );
 };

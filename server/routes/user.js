@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-
-//user routes
+const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
 router.get("/api/test", (req, res) => {
@@ -10,52 +9,60 @@ router.get("/api/test", (req, res) => {
 });
 
 router.post("/api/register", async (req, res) => {
-  try {
-    // const newPassword = await bcrypt.hash(req.body.password, 10);
+  const { name, username, email, password: plainTextPassword } = req.body;
+  const password = await bcrypt.hash(plainTextPassword, 10);
 
-    if (await User.findOne({ email: req.body.email })) {
-      res.status(400).json({ status: "error", error: "Duplicate email" });
-      return;
-    } else {
-      //creates a user in mongodb database
-      await User.create({
-        name: req.body.name,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-      });
+  if (plainTextPassword.length < 5) {
+    return res.json({
+      status: "error",
+      error: "Password should be atleast 6 characters.",
+    });
+  }
+
+  try {
+    await User.create({
+      name: name,
+      username: username,
+      email: email,
+      password: password,
+    });
+
+    res.status(200).json({ status: "ok" });
+  } catch (error) {
+    console.log(error);
+
+    if (error.code === 11000) {
+      //duplicate key found in mongo database
+      return res.json({ status: "error", error: "Email already in use." });
     }
-    res.json({ status: "ok" });
-  } catch (err) {
-    console.log(err);
-    res.json({ status: "error", error: "Duplicate email" });
+    throw error;
   }
 });
 
 router.post("/api/login", async (req, res) => {
+  const { email, password } = req.body;
+
   const user = await User.findOne({
-    email: req.body.email,
-    password: req.body.password,
+    email,
   });
 
   console.log(user);
 
-  if (user) {
+  if (user && (await bcrypt.compare(password, user.password))) {
+    // the username, password combination is successful
     const token = jwt.sign(
       {
-        email: user.email,
-        password: user.password,
+        email: email,
+        password: password,
       },
       "secret123"
     );
-    return res
-      .status(200)
-      .json({
-        status: "ok",
-        user: token,
-        name: user.name,
-        username: user.username,
-      });
+    return res.status(200).json({
+      status: "ok",
+      token: token,
+      name: user.name,
+      username: user.username,
+    });
   } else {
     return res.status(401).send({ error: "User credentials incorrect" });
   }
