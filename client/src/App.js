@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
-import Home from "./components/Home";
-import RoadmapPage from "./pages/RoadmapPage";
-import NewFeedbackPage from "./pages/NewFeedback";
+import {
+  Login,
+  SignUp,
+  Home,
+  RoadmapPage,
+  NewFeedback,
+  FeedbackDetail,
+} from "./pages";
 
 function App() {
   return (
@@ -13,7 +16,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/roadmap" element={<RoadmapPage />} />
-        <Route path="/newfeedback" element={<NewFeedbackPage />} />ß
+        <Route path="/newfeedback" element={<NewFeedback />} />
+        <Route path="/feedback/:id" element={<FeedbackDetail />} />
       </Routes>
     </BrowserRouter>
   );

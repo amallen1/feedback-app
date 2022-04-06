@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { suggestionApi } from "./services/suggestions";
 import categoryReducer from "./features/feedbacks/categoriesSlice";
 import sortingCategoryReducer from "./features/feedbacks/sortSlice";
+import userReducer from "./features/user/userSlice";
 
 // This creates a Redux store, and also automatically configure
 // the Redux DevTools extension so that you can inspect the store while developing.
@@ -11,6 +12,7 @@ export default configureStore({
     [suggestionApi.reducerPath]: suggestionApi.reducer,
     categories: categoryReducer,
     sortingCategories: sortingCategoryReducer,
+    user: userReducer,
   },
 
   // Adding the api middleware enables caching, invalidation, polling,

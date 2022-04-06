@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 import EmptyFeedbackList from "./EmptyFeedbackList";
 import { useSelector } from "react-redux";
 import { useGetAllSuggestionsQuery } from "../../services/suggestions";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   padding: 2em 1em 2.4375em 1em;
@@ -53,7 +54,17 @@ const FeedbackList = () => {
     <Container>
       {data && data.length > 0 ? (
         data.map((feedback, index) => {
-          return <Feedback feedback={feedback} key={index} />;
+          return (
+            <Link
+              to={{
+                pathname: `feedback/${feedback["_id"]}`,
+              }}
+              state={feedback}
+              key={index}
+            >
+              <Feedback feedback={feedback} />
+            </Link>
+          );
         })
       ) : (
         <EmptyFeedbackList />

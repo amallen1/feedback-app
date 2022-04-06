@@ -2,12 +2,10 @@ import React from "react";
 import styled from "styled-components/macro";
 import Sidebar from "./Sidebar";
 import Roadmap from "./Roadmap";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
-  /* position: absolute; */
-  /* z-index: 200; */
-  /* width: 100%; */
-  /* height: 100%; */
+  position: relative;
 `;
 
 const Div = styled.div`
@@ -31,12 +29,20 @@ const Menu = styled.div`
   right: 0px;
 `;
 
+const LinkWrapper = styled.div`
+  display: flex;
+`;
+
 const Overlay = ({ toggle }) => {
-  console.log(toggle);
   return (
     <Wrapper>
       <Div onClick={() => toggle()} />
       <Menu>
+        <LinkWrapper>
+          <Link to="/login">Sign in</Link>
+          <Link to="/signup">Sign up</Link>
+        </LinkWrapper>
+
         <Sidebar />
         <Roadmap />
       </Menu>

@@ -11,16 +11,22 @@ import Overlay from "./Overlay";
 import Sidebar from "./Sidebar";
 import Roadmap from "./Roadmap";
 import useWindowDimensions from "../../hooks/window";
+import { useSelector } from "react-redux";
 
 const SuggestionsHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { width } = useWindowDimensions();
 
+  const user = useSelector((state) => state.user.value["name"]);
+
+  console.log(user);
+
   return (
     <Container>
       <Header>
         <Div>
-          <Title>Frontend Mentor</Title>
+          <Title>Welcome, {user ? user : "Guest"}</Title>
+          {/* Welcome, Guest or welcome Username */}
           <SecondaryTitle>Feedback Board</SecondaryTitle>
         </Div>
 

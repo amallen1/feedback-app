@@ -25,7 +25,7 @@ import {
 
 import { useAddSuggestionMutation } from "../services/suggestions";
 
-const NewFeedback = () => {
+export const NewFeedback = () => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
@@ -132,5 +132,3 @@ const NewFeedback = () => {
     </ContainerDiv>
   );
 };
-
-export default NewFeedback;

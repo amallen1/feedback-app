@@ -46,6 +46,7 @@ export const DeleteButton = styled(StyledButton)`
 `;
 
 export const EditButton = styled(StyledButton)`
+  background-color: var(--royalBlue);
   :hover {
     background-color: var(--hoverRoyalBlue);
   }

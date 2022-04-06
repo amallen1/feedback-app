@@ -26,27 +26,47 @@ export const Wrapper = styled.div`
 
 export const Title = styled.h1`
   color: var(--lightDarkNavy);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   font-size: 1.5rem;
+`;
+
+export const FormTitle = styled.h2`
+  font-size: 1.25rem;
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 1rem auto;
-  width: 80%;
+  width: 90%;
+  margin: 0 auto;
+  padding: 1rem 0rem;
 
+  label {
+    text-align: left;
+  }
   input {
     padding: 0.5rem;
-    margin-bottom: 1rem;
+    width: 100%;
+  }
+  @media (min-width: 600px) {
+    width: 80%;
+  }
+`;
+
+export const FormButton = styled.button`
+  background-color: var(--brightPurple);
+  border-radius: 10px;
+  border: none;
+  padding: 0.75rem;
+  color: var(--buttonTextColor);
+  font-weight: 700;
+
+  :hover {
+    background-color: var(--hoverPurple);
   }
 
-  button {
-    background-color: var(--brightPurple);
-    border-radius: 10px;
-    border: none;
-    padding: 0.75rem;
-    color: var(--buttonTextColor);
+  @media (min-width: 768px) {
+    font-size: 1rem;
   }
 `;
 

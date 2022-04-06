@@ -1,5 +1,10 @@
 import styled from "styled-components/macro";
 
+export const InputWrapper = styled.div`
+  position: relative;
+  margin-bottom: 1rem;
+`;
+
 export const Input = styled.input`
   padding: 0.9375rem 1rem 0.875rem;
   width: 100%;

@@ -1,7 +1,5 @@
 import React from "react";
 
-const RoadmapPage = () => {
+export const RoadmapPage = () => {
   return <div>currently under development</div>;
 };
-
-export default RoadmapPage;

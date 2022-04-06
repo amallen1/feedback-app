@@ -1,8 +1,8 @@
 import React from "react";
-import SuggestionsHeader from "./Header/SuggestionsHeader";
+import SuggestionsHeader from "../components/Header/SuggestionsHeader";
 import styled from "styled-components/macro";
-import Subheader from "./Header/Subheader";
-import FeedbackList from "./Feedback/FeedbackList";
+import Subheader from "../components/Header/Subheader";
+import FeedbackList from "../components/Feedback/FeedbackList";
 
 const HomeContainer = styled.div`
   height: inherit;
@@ -36,14 +36,18 @@ const FirstSection = styled.div`
 const SecondSection = styled.div`
   height: inherit;
   width: 100%;
-  /* overflow: scroll; */
+  overflow: scroll;
+
+  @media (min-width: 768px) {
+    overflow: initial;
+  }
 
   @media (min-width: 1100px) {
     max-width: 825px;
   }
 `;
 
-const Home = () => {
+export const Home = () => {
   return (
     <HomeContainer>
       <FirstSection>
@@ -57,5 +61,3 @@ const Home = () => {
     </HomeContainer>
   );
 };
-
-export default Home;

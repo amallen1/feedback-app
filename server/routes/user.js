@@ -48,9 +48,16 @@ router.post("/api/login", async (req, res) => {
       },
       "secret123"
     );
-    return res.status(200).json({ status: "ok", user: token });
+    return res
+      .status(200)
+      .json({
+        status: "ok",
+        user: token,
+        name: user.name,
+        username: user.username,
+      });
   } else {
-    return res.status(400).send("gggg");
+    return res.status(401).send({ error: "User credentials incorrect" });
   }
 });
 

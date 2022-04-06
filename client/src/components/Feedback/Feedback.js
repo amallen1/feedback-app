@@ -94,13 +94,13 @@ const CommentDiv = styled.div`
 const Feedback = ({ feedback }) => {
   return (
     <Card>
-      <Link to="/">
-        <MainInfo>
-          <Title>{feedback.title}</Title>
-          <Description>{feedback.description}</Description>
-          <FilterButton>{feedback.category}</FilterButton>
-        </MainInfo>
-      </Link>
+      {/* <Link to={`feedback/${feedback.id}`} state={feedback}> */}
+      <MainInfo>
+        <Title>{feedback.title}</Title>
+        <Description>{feedback.description}</Description>
+        <FilterButton>{feedback.category}</FilterButton>
+      </MainInfo>
+      {/* </Link> */}
 
       <UpvoteDiv>
         <UpvoteButton>{feedback.upvotes}</UpvoteButton>
