@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FilterButton, UpvoteButton } from "../../styles/reusable/Button";
 
 const Card = styled.div`
@@ -92,15 +92,25 @@ const CommentDiv = styled.div`
 `;
 
 const Feedback = ({ feedback }) => {
+  const { pathname } = useLocation();
+
   return (
     <Card>
-      {/* <Link to={`feedback/${feedback.id}`} state={feedback}> */}
-      <MainInfo>
-        <Title>{feedback.title}</Title>
-        <Description>{feedback.description}</Description>
-        <FilterButton>{feedback.category}</FilterButton>
-      </MainInfo>
-      {/* </Link> */}
+      {pathname.includes("feedback") ? (
+        <MainInfo>
+          <Title>{feedback.title}</Title>
+          <Description>{feedback.description}</Description>
+          <FilterButton>{feedback.category}</FilterButton>
+        </MainInfo>
+      ) : (
+        <Link to={`feedback/${feedback.id}`} state={feedback}>
+          <MainInfo>
+            <Title>{feedback.title}</Title>
+            <Description>{feedback.description}</Description>
+            <FilterButton>{feedback.category}</FilterButton>
+          </MainInfo>
+        </Link>
+      )}
 
       <UpvoteDiv>
         <UpvoteButton>{feedback.upvotes}</UpvoteButton>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { login, logout } from "../features/user/userSlice";
+import { login } from "../features/user/userSlice";
 
 import {
   Container,
@@ -45,7 +45,10 @@ export const Login = () => {
           localStorage.setItem("name", res.name);
           localStorage.setItem("username", res.username);
 
-          dispatch(login({ name: res.name, username: res.username }));
+          const name = localStorage.getItem("name");
+          const username = localStorage.getItem("username");
+
+          dispatch(login({ name: name, username: username }));
           navigate("/");
         } else {
           setAccountError(true);
@@ -77,7 +80,7 @@ export const Login = () => {
           <label>Email</label>
           <InputWrapper>
             <input
-              type="text"
+              type="email"
               {...register("email", { required: true })}
               onChange={(e) => {
                 setEmail(e.target.value);

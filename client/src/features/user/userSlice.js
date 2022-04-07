@@ -12,6 +12,7 @@ const userSlice = createSlice({
 
     logout(state) {
       state.value = initialStateValue;
+      localStorage.clear();
     },
   },
 });

@@ -110,7 +110,7 @@ export const SignUp = () => {
           <label>Email address</label>
           <InputWrapper>
             <input
-              type="text"
+              type="email"
               {...register("email", { required: true })}
               onChange={(e) => {
                 setEmail(e.target.value);

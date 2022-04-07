@@ -54,17 +54,7 @@ const FeedbackList = () => {
     <Container>
       {data && data.length > 0 ? (
         data.map((feedback, index) => {
-          return (
-            <Link
-              to={{
-                pathname: `feedback/${feedback["_id"]}`,
-              }}
-              state={feedback}
-              key={index}
-            >
-              <Feedback feedback={feedback} />
-            </Link>
-          );
+          return <Feedback feedback={feedback} key={index} />;
         })
       ) : (
         <EmptyFeedbackList />

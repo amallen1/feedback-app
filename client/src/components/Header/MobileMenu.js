@@ -44,7 +44,7 @@ const Button = styled(StyledButton)`
   margin: 0 auto 1rem;
 `;
 
-const Overlay = ({ toggle }) => {
+const MobileMenu = ({ toggle }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value["name"]);
 
@@ -79,4 +79,4 @@ const Overlay = ({ toggle }) => {
   );
 };
 
-export default Overlay;
+export default MobileMenu;
