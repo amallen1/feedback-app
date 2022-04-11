@@ -3,22 +3,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const suggestionApi = createApi({
   reducerPath: "suggestionApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://productfeedback-app.herokuapp.com/api",
+    baseUrl: `${process.env.REACT_APP_BASE_URL}/api`,
   }),
-  tagTypes: ["Suggestions"],
+  tagTypes: ["Suggestions", "Comments"],
   endpoints: (builder) => ({
     getAllSuggestions: builder.query({
       query: () => "/get_suggestions",
-      providesTags: (result) =>
-        // is result available?
-        result
-          ? // successful query
-            [
-              ...result.map(({ id }) => ({ type: "Suggestions", id })),
-              { type: "Suggestions", id: "LIST" },
-            ]
-          : // an error occurred, but we still want to refetch this query when `{ type: 'Suggestions', id: 'LIST' }` is invalidated
-            [{ type: "Suggestions", id: "LIST" }],
+      providesTags: [{ type: "Suggestions", id: "LIST" }],
     }),
     addSuggestion: builder.mutation({
       query(body) {
@@ -32,10 +23,28 @@ export const suggestionApi = createApi({
       // that newly created post could show up in any lists.
       invalidatesTags: [{ type: "Suggestions", id: "LIST" }],
     }),
+    getComments: builder.query({
+      query: (id) => ({ url: `get_comments/${id}` }),
+      providesTags: () => [{ type: "Comments", id: "LIST" }],
+    }),
+    addComment: builder.mutation({
+      query(body) {
+        return {
+          url: `add_comment`,
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: [{ type: "Comments", id: "LIST" }],
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllSuggestionsQuery, useAddSuggestionMutation } =
-  suggestionApi;
+export const {
+  useGetAllSuggestionsQuery,
+  useAddSuggestionMutation,
+  useAddCommentMutation,
+  useGetCommentsQuery,
+} = suggestionApi;

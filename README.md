@@ -65,7 +65,7 @@ I also learned how to use Redux while building this application. Redux Toolkit i
 
 ### Continued development
 
-This application is still under development. At the moment a user can sort through the list of feedback items and add feedback while instantly seeing it added on the suggestions homepage. As development continues, users will be able to create accounts to upvote feedbacks and leave comments on feedback items. The roadmap page is also under development but in the future it will show an organized list of feedback suggestions that have a status of "Planned", "In-Progress", or "Live" similar to the application Trello.
+This application is still under development. At the moment a user can sort through the list of feedback items and add feedback while instantly seeing it added on the suggestions homepage. As development continues, users will be able to  to upvote, edit, delete, and comment on feedback items. The roadmap page is also under development but in the future it will show an organized list of feedback suggestions that have a status of "Planned", "In-Progress", or "Live" similar to the application Trello.
 
 ### Useful resources
 

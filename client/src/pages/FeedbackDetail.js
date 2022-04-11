@@ -8,9 +8,13 @@ import { BackButton } from "../styles/reusable/Button";
 import { EditButton } from "../styles/reusable/Button";
 import { Link } from "react-router-dom";
 
-// import { TextInput } from "../styles/newFeedbackStyles";
 import { StyledButton } from "../styles/reusable/Button";
 import { TextArea } from "../styles/reusable/Forms";
+import CommentList from "../components/Comments/CommentList";
+import {
+  useAddCommentMutation,
+  useGetCommentsQuery,
+} from "../services/suggestions";
 
 const Container = styled.div`
   padding: 2.125rem 1.5rem;
@@ -55,12 +59,32 @@ export const FeedbackDetail = () => {
   const [message, setMessage] = useState("");
   const [charCount, setCharCount] = useState(MAX_LENGTH);
 
+  const [addComment] = useAddCommentMutation();
+
   const handleInput = (e) => {
     const input = e.target.value;
     setMessage(input);
     setCharCount(MAX_LENGTH - input.length);
   };
 
+  const submitComment = () => {
+    console.log("ADDING COMMENT");
+
+    addComment({
+      title: state.title,
+      message: message,
+      name: "Guest",
+      username: "GuestUser",
+    })
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+  };
+
+  const { data, isSuccess, isFetching, refetch } = useGetCommentsQuery(
+    state["_id"]
+  );
+  console.log(data);
+  console.log(isSuccess);
   return (
     <Container>
       <Nav>
@@ -74,7 +98,10 @@ export const FeedbackDetail = () => {
           Edit Feedback
         </EditButton>
       </Nav>
+
       <Feedback feedback={state} />
+
+      <CommentList data={data} />
 
       <AddComment>
         <h3>Add comment</h3>
@@ -88,9 +115,7 @@ export const FeedbackDetail = () => {
         />
         <EndSection>
           <p>{charCount} characters left</p>
-          <StyledButton as={Link} to="/">
-            Post Comment
-          </StyledButton>
+          <button onClick={() => submitComment()}>Post Comment</button>
         </EndSection>
       </AddComment>
     </Container>

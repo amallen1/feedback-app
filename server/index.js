@@ -17,9 +17,11 @@ mongoose
 
 const userRoutes = require("./routes/user");
 const feedbackRoutes = require("./routes/feedbackRoute");
+const commentRoutes = require("./routes/commentRoute");
 
 app.use("/", userRoutes);
 app.use("/", feedbackRoutes);
+app.use("/", commentRoutes);
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
