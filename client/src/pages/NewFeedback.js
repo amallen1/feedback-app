@@ -23,7 +23,7 @@ import {
   Nav,
 } from "../styles/newFeedbackStyles";
 
-import { useAddSuggestionMutation } from "../services/suggestions";
+import { useAddSuggestionMutation } from "../services/feedbacks";
 
 export const NewFeedback = () => {
   const navigate = useNavigate();

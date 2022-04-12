@@ -4,7 +4,7 @@ import { StyledButton } from "../../styles/reusable/Button";
 import { Link } from "react-router-dom";
 import useWindowDimensions from "../../hooks/window";
 import CommentDropdown from "../CommentDropdown";
-import { useGetAllSuggestionsQuery } from "../../services/suggestions";
+import { useGetAllSuggestionsQuery } from "../../services/feedbacks";
 import { useSelector } from "react-redux";
 
 const SubheaderContainer = styled.div`

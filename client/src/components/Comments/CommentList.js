@@ -1,7 +1,5 @@
-import React from "react";
 import styled from "styled-components/macro";
 import Comment from "./Comment";
-import { useGetCommentsQuery } from "../../services/suggestions";
 
 const Container = styled.div`
   background-color: var(--white);

@@ -12,7 +12,7 @@ import CommentList from "../components/Comments/CommentList";
 import {
   useAddCommentMutation,
   useGetCommentsQuery,
-} from "../services/suggestions";
+} from "../services/feedbacks";
 
 const Container = styled.div`
   padding: 2.125rem 1.5rem;

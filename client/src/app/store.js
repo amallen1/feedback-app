@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { suggestionApi } from "../services/suggestions";
+import { feedbackApi } from "../services/feedbacks";
 import categoryReducer from "../features/feedbacks/categoriesSlice";
 import sortingCategoryReducer from "../features/feedbacks/sortSlice";
 import userReducer from "../features/user/userSlice";
@@ -7,7 +7,7 @@ import userReducer from "../features/user/userSlice";
 export default configureStore({
   reducer: {
     // Add the generated reducer as a specific top-level slice
-    [suggestionApi.reducerPath]: suggestionApi.reducer,
+    [feedbackApi.reducerPath]: feedbackApi.reducer,
     categories: categoryReducer,
     sortingCategories: sortingCategoryReducer,
     user: userReducer,
@@ -16,5 +16,5 @@ export default configureStore({
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(suggestionApi.middleware),
+    getDefaultMiddleware().concat(feedbackApi.middleware),
 });

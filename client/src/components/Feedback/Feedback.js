@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/macro";
 import { Link, useLocation } from "react-router-dom";
 import { FilterButton, UpvoteButton } from "../../styles/reusable/Button";
-import { useGetCommentsQuery } from "../../services/suggestions";
+import { useGetCommentsQuery } from "../../services/feedbacks";
 
 const Card = styled.div`
   padding: 1.5em;

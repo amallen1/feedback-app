@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const suggestionApi = createApi({
-  reducerPath: "suggestionApi",
+export const feedbackApi = createApi({
+  reducerPath: "feedbackApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_BASE_URL}/api`,
   }),
@@ -47,4 +47,4 @@ export const {
   useAddSuggestionMutation,
   useAddCommentMutation,
   useGetCommentsQuery,
-} = suggestionApi;
+} = feedbackApi;
