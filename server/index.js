@@ -15,9 +15,9 @@ mongoose
   })
   .catch((error) => console.log(error));
 
-const userRoutes = require("./routes/user");
-const feedbackRoutes = require("./routes/feedbackRoute");
-const commentRoutes = require("./routes/commentRoute");
+const userRoutes = require("./routes/userRoutes");
+const feedbackRoutes = require("./routes/feedbackRoutes");
+const commentRoutes = require("./routes/commentRoutes");
 
 app.use("/", userRoutes);
 app.use("/", feedbackRoutes);

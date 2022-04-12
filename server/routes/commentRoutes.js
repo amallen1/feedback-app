@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-//feedback routes
 const Comment = require("../models/comment");
 const Feedback = require("../models/feedback");
 
@@ -35,15 +34,9 @@ router.get("/api/get_comments/:id", async (req, res) => {
 router.post("/api/add_comment", async (req, res) => {
   const { title, message, name, username } = req.body;
 
-  //   console.log(title);
-  //   console.log(message);
-  //   console.log(name);
-  //   console.log(username);
-  //   console.log(".....................");
-
   //find one returns a document
-  const feedbackComment = await Feedback.findOne({ title: title });
-  console.log(feedbackComment); //gets the correct data
+  const feedback = await Feedback.findOne({ title: title });
+  console.log(feedback); 
 
   const newComment = await Comment.create({
     content: message,
@@ -56,9 +49,9 @@ router.post("/api/add_comment", async (req, res) => {
   console.log("what is the new comment?");
   console.log(newComment);
 
-  feedbackComment.comments.push(newComment);
+  feedback.comments.push(newComment);
 
-  feedbackComment.save(function (err) {
+  feedback.save(function (err) {
     if (err) return handleError(err);
     console.log("Success!");
   });

@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-//feedback routes
 const Feedback = require("../models/feedback");
 
 router.get("/api/get_suggestions", async (req, res) => {
@@ -30,7 +29,5 @@ router.post("/api/add_suggestion", (req, res) => {
     res.json({ status: "error", error: "Error creating suggestion" });
   }
 });
-
-// router.post("/api/add_comment")
 
 module.exports = router;

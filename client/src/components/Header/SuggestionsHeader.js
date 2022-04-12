@@ -55,7 +55,7 @@ const SuggestionsHeader = () => {
         <Div>
           {width >= 768 ? (
             <div>
-              {user ? (
+              {user !== "Guest" ? (
                 <Button onClick={() => dispatch(logout())}>Logout</Button>
               ) : (
                 <LinkWrapper>

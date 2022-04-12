@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 // import ContainerDiv from "../styles/reusable/Container";
 import Feedback from "../components/Feedback/Feedback";
 import styled from "styled-components/macro";
+import { useSelector } from "react-redux";
 
-import { BackButton } from "../styles/reusable/Button";
-import { EditButton } from "../styles/reusable/Button";
+import { Button, BackButton, EditButton } from "../styles/reusable/Button";
 import { Link } from "react-router-dom";
-
-import { StyledButton } from "../styles/reusable/Button";
 import { TextArea } from "../styles/reusable/Forms";
 import CommentList from "../components/Comments/CommentList";
 import {
@@ -45,11 +43,16 @@ const EndSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  p {
+    color: var(--darkNavyBlue);
+  }
 `;
 
 const TextInput = styled(TextArea)`
   padding: 1rem 1rem 1rem;
   height: 80px;
+  margin-bottom: 1rem;
 `;
 
 export const FeedbackDetail = () => {
@@ -60,6 +63,7 @@ export const FeedbackDetail = () => {
   const [charCount, setCharCount] = useState(MAX_LENGTH);
 
   const [addComment] = useAddCommentMutation();
+  const { name, username } = useSelector((state) => state.user.value);
 
   const handleInput = (e) => {
     const input = e.target.value;
@@ -73,8 +77,8 @@ export const FeedbackDetail = () => {
     addComment({
       title: state.title,
       message: message,
-      name: "Guest",
-      username: "GuestUser",
+      name: name,
+      username: username,
     })
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
@@ -85,6 +89,10 @@ export const FeedbackDetail = () => {
   );
   console.log(data);
   console.log(isSuccess);
+
+  console.log(name);
+  console.log(username);
+
   return (
     <Container>
       <Nav>
@@ -115,7 +123,7 @@ export const FeedbackDetail = () => {
         />
         <EndSection>
           <p>{charCount} characters left</p>
-          <button onClick={() => submitComment()}>Post Comment</button>
+          <Button onClick={() => submitComment()}>Post Comment</Button>
         </EndSection>
       </AddComment>
     </Container>
