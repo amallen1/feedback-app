@@ -12,10 +12,20 @@ const Heading = styled.h3`
   color: var(--lighterNavyBlue);
 `;
 
+// let commentCount =
+//   data.length === 1 ? "red" : task.priority === 2 ? "yellow" : "green";
+// {data ? data.length === 1`${data.length} Comments` : "0 Comments"}
+
 const CommentList = ({ data }) => {
   return (
     <Container>
-      <Heading>{data ? `${data.length} Comments` : "0 Comments"}</Heading>
+      <Heading>
+        {data
+          ? data.length === 1
+            ? "1 Comment"
+            : `${data.length} Comments`
+          : null}
+      </Heading>
       {data
         ? data.map((comment, index) => {
             return <Comment comment={comment} key={index} />;
