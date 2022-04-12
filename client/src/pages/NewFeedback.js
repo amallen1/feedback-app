@@ -23,9 +23,9 @@ import {
   Nav,
 } from "../styles/newFeedbackStyles";
 
-import { useAddSuggestionMutation } from "../services/suggestions";
+import { useAddSuggestionMutation } from "../services/feedbacks";
 
-const NewFeedback = () => {
+export const NewFeedback = () => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
@@ -132,5 +132,3 @@ const NewFeedback = () => {
     </ContainerDiv>
   );
 };
-
-export default NewFeedback;

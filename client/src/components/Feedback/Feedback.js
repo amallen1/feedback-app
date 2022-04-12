@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FilterButton, UpvoteButton } from "../../styles/reusable/Button";
+import { useGetCommentsQuery } from "../../services/feedbacks";
 
 const Card = styled.div`
   padding: 1.5em;
@@ -20,6 +21,10 @@ const Card = styled.div`
     display: flex;
     align-items: center;
   }
+`;
+
+const StyledLink = styled(Link)`
+  width: 100%;
 `;
 
 const MainInfo = styled.div`
@@ -69,8 +74,6 @@ const CommentButton = styled.div`
 `;
 
 const UpvoteDiv = styled.div`
-  /* display: inline-block; */
-
   @media (min-width: 768px) {
     order: -1;
     margin-right: 2.5rem;
@@ -78,7 +81,6 @@ const UpvoteDiv = styled.div`
 `;
 
 const CommentDiv = styled.div`
-  /* display: inline-block; */
   position: absolute;
   right: 2rem;
   bottom: 1.75em;
@@ -92,24 +94,46 @@ const CommentDiv = styled.div`
 `;
 
 const Feedback = ({ feedback }) => {
+  const { pathname } = useLocation();
+
+  const incrementCount = () => {
+    console.log("hi");
+    //api call to back end
+  };
+
+  const { data } = useGetCommentsQuery(feedback["_id"]);
+
   return (
     <Card>
-      <Link to="/">
+      {pathname.includes("feedback") ? (
         <MainInfo>
           <Title>{feedback.title}</Title>
           <Description>{feedback.description}</Description>
           <FilterButton>{feedback.category}</FilterButton>
         </MainInfo>
-      </Link>
+      ) : (
+        <StyledLink
+          style={{ display: "block" }}
+          to={`feedback/${feedback["_id"]}`}
+          state={feedback}
+        >
+          <MainInfo>
+            <Title>{feedback.title}</Title>
+            <Description>{feedback.description}</Description>
+            <FilterButton>{feedback.category}</FilterButton>
+          </MainInfo>
+        </StyledLink>
+      )}
 
       <UpvoteDiv>
-        <UpvoteButton>{feedback.upvotes}</UpvoteButton>
+        {/* need to make an onclick that increments and decrements count */}
+        <UpvoteButton onClick={() => incrementCount()}>
+          {feedback.upvotes}
+        </UpvoteButton>
       </UpvoteDiv>
 
       <CommentDiv>
-        <CommentButton>
-          {feedback.comments ? feedback.comments.length : 0}
-        </CommentButton>
+        <CommentButton>{data ? data.length : 0}</CommentButton>
       </CommentDiv>
     </Card>
   );

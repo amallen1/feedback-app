@@ -6,12 +6,12 @@ export const Container = styled.div`
   @media (min-width: 768px) {
     display: flex;
     justify-content: space-between;
-    height: 178px;
   }
 
   @media (min-width: 1000px) {
     flex-direction: column;
     gap: 1rem;
+    height: 547px;
   }
 `;
 
@@ -26,10 +26,14 @@ export const Header = styled.header`
 
   @media (min-width: 768px) {
     flex: 1;
-    padding: 6.4375rem 1.5rem 1.5rem;
+    padding: 1rem 1.5rem 1.5rem;
     max-width: 223px;
     border-radius: 10px;
     background-image: url("/assets/suggestions/tablet/background-header.png");
+  }
+
+  @media (min-width: 1000px) {
+    height: 200px;
   }
 `;
 
@@ -37,6 +41,12 @@ export const Div = styled.div`
   display: flex;
   flex-direction: column;
   color: var(--white);
+
+  @media (min-width: 768px) {
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+  }
 `;
 
 export const Title = styled.h1`

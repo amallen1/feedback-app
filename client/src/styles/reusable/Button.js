@@ -1,5 +1,27 @@
 import styled from "styled-components/macro";
 
+export const Button = styled.button`
+  background-color: var(--brightPurple);
+  background-color: var(--brightPurple);
+  color: var(--buttonTextColor);
+  padding: 0.625rem 1rem;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  display: inline-block;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+
+  :hover {
+    background-color: var(--hoverPurple);
+  }
+
+  @media (min-width: 768px) {
+    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
+  }
+`;
+
 export const StyledButton = styled.a`
   /* background-color: ${(props) => props.bgcolor}; */
   background-color: var(--brightPurple);
@@ -9,7 +31,7 @@ export const StyledButton = styled.a`
   font-size: 0.8125rem;
   display: inline-block;
   border-radius: 10px;
-  text-align: center; //need for button in newfeedback
+  text-align: center;
   cursor: pointer;
 
   ${({ plus }) =>
@@ -46,6 +68,7 @@ export const DeleteButton = styled(StyledButton)`
 `;
 
 export const EditButton = styled(StyledButton)`
+  background-color: var(--royalBlue);
   :hover {
     background-color: var(--hoverRoyalBlue);
   }

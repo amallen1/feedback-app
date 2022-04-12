@@ -3,7 +3,7 @@ import Feedback from "./Feedback";
 import styled from "styled-components/macro";
 import EmptyFeedbackList from "./EmptyFeedbackList";
 import { useSelector } from "react-redux";
-import { useGetAllSuggestionsQuery } from "../../services/suggestions";
+import { useGetAllSuggestionsQuery } from "../../services/feedbacks";
 
 const Container = styled.div`
   padding: 2em 1em 2.4375em 1em;
