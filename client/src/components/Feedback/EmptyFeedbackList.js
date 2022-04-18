@@ -1,48 +1,16 @@
-import styled from "styled-components/macro";
 import { StyledButton } from "../../styles/reusable/Button";
 import { Link } from "react-router-dom";
-
-const Div = styled.div`
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 4.75em 1.5em;
-  text-align: center;
-
-  @media (min-width: 768px) {
-    display: flex;
-    align-items: center;
-    height: 600px;
-  }
-`;
-
-const Wrapper = styled.div`
-  @media (min-width: 768px) {
-    padding: 0 6.75rem;
-  }
-`;
-
-const Image = styled.img`
-  margin-bottom: 2.25em;
-`;
-
-const Notice = styled.h3`
-  margin-bottom: 0.875em;
-  color: var(--lighterNavyBlue);
-`;
-
-const Message = styled.p`
-  color: var(--dullGray);
-  font-size: 13px;
-  margin-bottom: 1.5rem;
-
-  @media (min-width: 768px) {
-    font-size: 1rem;
-  }
-`;
+import {
+  Container,
+  Wrapper,
+  Image,
+  Notice,
+  Message,
+} from "../../styles/Feedback/emptyFeedbackStyles";
 
 const EmptyFeedbackList = () => {
   return (
-    <Div>
+    <Container>
       <Wrapper>
         <Image
           src="./assets/suggestions/illustration-empty.svg"
@@ -59,7 +27,7 @@ const EmptyFeedbackList = () => {
           Add Feedback
         </StyledButton>
       </Wrapper>
-    </Div>
+    </Container>
   );
 };
 

@@ -1,20 +1,24 @@
-import React from "react";
 import { Search } from "../../styles/sidebarStyles";
-import CategoryButton from "./CategoryButton";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { FilterButton } from "../../styles/reusable/Button";
+import { categorySelected } from "../../features/feedbacks/categoriesSlice";
 
 const Sidebar = () => {
   //gets all the categories from redux store
   const categories = useSelector((state) => state.categories);
 
+  const dispatch = useDispatch();
+
   const buttons = categories.map((category, index) => {
     return (
-      <CategoryButton
+      <FilterButton
+        onClick={() => dispatch(categorySelected(category.name))}
         aria-pressed={category.selected}
         key={index}
-        category={category.name}
         selected={category.selected}
-      />
+      >
+        {category.name}
+      </FilterButton>
     );
   });
 

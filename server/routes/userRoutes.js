@@ -4,10 +4,6 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
-router.get("/api/test", (req, res) => {
-  res.send("testing");
-});
-
 router.post("/api/register", async (req, res) => {
   const { name, username, email, password: plainTextPassword } = req.body;
   const password = await bcrypt.hash(plainTextPassword, 10);
@@ -55,7 +51,7 @@ router.post("/api/login", async (req, res) => {
         email: email,
         password: password,
       },
-      "secret123"
+      "secret123" 
     );
     return res.status(200).json({
       status: "ok",

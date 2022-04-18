@@ -32,13 +32,14 @@ export const GlobalStyles = createGlobalStyle`${css`
     font-family: "Jost", sans-serif;
   }
 
-  #root {
-    height: 100%;
-  }
-  
-  html,
+  /* html,
   body {
     height: 100%;
+  } */
+  html,
+  body {
+    min-height: 100vh;
+    overflow: auto;
   }
 
   body {

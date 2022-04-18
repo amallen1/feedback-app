@@ -23,6 +23,50 @@ export const feedbackApi = createApi({
       // that newly created post could show up in any lists.
       invalidatesTags: [{ type: "Suggestions", id: "LIST" }],
     }),
+    updateSuggestion: builder.mutation({
+      query(data) {
+        const { id, body } = data;
+        return {
+          url: `update_suggestion/${id}`,
+          method: "PUT",
+          body,
+        };
+      },
+      invalidatesTags: [{ type: "Suggestions", id: "LIST" }],
+    }),
+    deleteSuggestion: builder.mutation({
+      query(id) {
+        return {
+          url: `delete_suggestion/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: [{ type: "Suggestions", id: "LIST" }],
+    }),
+    upvoteSuggestion: builder.mutation({
+      query(data) {
+        const { id, body } = data;
+        return {
+          url: `${id}/upvote`,
+          method: "PUT",
+          body
+        };
+      },
+      invalidatesTags: [{ type: "Suggestions", id: "LIST" }],
+    }),
+
+    downvoteSuggestion: builder.mutation({
+      query(data) {
+        const { id, body } = data;
+        return {
+          url: `${id}/downvote`,
+          method: "PUT",
+          body,
+        };
+      },
+      invalidatesTags: [{ type: "Suggestions", id: "LIST" }],
+    }),
+
     getComments: builder.query({
       query: (id) => ({ url: `get_comments/${id}` }),
       providesTags: () => [{ type: "Comments", id: "LIST" }],
@@ -45,6 +89,10 @@ export const feedbackApi = createApi({
 export const {
   useGetAllSuggestionsQuery,
   useAddSuggestionMutation,
+  useUpdateSuggestionMutation,
+  useDeleteSuggestionMutation,
+  useUpvoteSuggestionMutation,
+  useDownvoteSuggestionMutation,
   useAddCommentMutation,
   useGetCommentsQuery,
 } = feedbackApi;

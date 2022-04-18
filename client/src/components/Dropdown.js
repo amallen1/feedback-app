@@ -32,6 +32,10 @@ const DropDownHeader = styled.div`
     outline-color: var(--royalBlue);
     outline-width: thin;
   }
+
+  @media (min-width: 768px) {
+    font-size: 0.9375rem;
+  }
 `;
 
 const DropDownListContainer = styled.div`
@@ -39,6 +43,7 @@ const DropDownListContainer = styled.div`
   top: 49px;
   width: 100%;
   z-index: 15;
+  text-decoration: capitalize;
 `;
 const DropDownList = styled.ul`
   margin: 1em 0;
@@ -63,43 +68,39 @@ const ListItem = styled.li`
   }
 `;
 
-const Dropdown = ({ categories, setCategory }) => {
+const Dropdown = ({ optionsList, setCategory, currOption }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggling = () => setIsOpen(!isOpen);
-  const [selectedOption, setSelectedOption] = useState("Feature");
+  const [selectedOption, setSelectedOption] = useState(currOption);
 
   useEffect(() => {
-    console.log(selectedOption);
+    // console.log(selectedOption);
   }, [selectedOption]);
 
-  const onOptionClicked = (value) => {
-    setSelectedOption(value);
-    setIsOpen(false);
-
-    setCategory(value);
+  const select = (value) => {
+    setSelectedOption(value); //sets the current option
+    setIsOpen(false); //closes the menu
+    setCategory(value); //actually sets the category
   };
 
-  const items = categories.map((category, index) => {
+  const options = optionsList.map((category, index) => {
     return (
-      <ListItem key={index} onClick={() => onOptionClicked(category)}>
+      <ListItem key={index} onClick={() => select(category)}>
         {category}
       </ListItem>
     );
   });
 
   return (
-    <div>
-      <DropDownContainer>
-        <DropDownHeader onClick={toggling} isOpen={isOpen}>
-          {selectedOption}
-        </DropDownHeader>
-        {isOpen && (
-          <DropDownListContainer>
-            <DropDownList>{items}</DropDownList>
-          </DropDownListContainer>
-        )}
-      </DropDownContainer>
-    </div>
+    <DropDownContainer>
+      <DropDownHeader onClick={() => setIsOpen(!isOpen)}>
+        {selectedOption}
+      </DropDownHeader>
+      {isOpen && (
+        <DropDownListContainer>
+          <DropDownList>{options}</DropDownList>
+        </DropDownListContainer>
+      )}
+    </DropDownContainer>
   );
 };
 

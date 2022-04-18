@@ -6,6 +6,7 @@ import {
   RoadmapPage,
   NewFeedback,
   FeedbackDetail,
+  EditFeedback,
 } from "./pages";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/roadmap" element={<RoadmapPage />} />
         <Route path="/newfeedback" element={<NewFeedback />} />
         <Route path="/feedback/:id" element={<FeedbackDetail />} />
+        <Route path="/edit-feedback/:id" element={<EditFeedback />} />
       </Routes>
     </BrowserRouter>
   );

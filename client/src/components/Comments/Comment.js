@@ -14,7 +14,8 @@ const Comment = ({ comment }) => {
           <p>@{comment.user.username}</p>
         </div>
 
-        <Button>Reply</Button>
+        {/* TODO: implement replying feature */}
+        {/* <Button>Reply</Button> */}
       </CommentHeader>
 
       {/* {replyingTo ? (

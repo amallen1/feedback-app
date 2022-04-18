@@ -53,6 +53,10 @@ export const Image = styled.img`
 export const Title = styled.h3`
   margin-bottom: 1.5rem;
   color: var(--lighterNavyBlue);
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const Form = styled.form`
@@ -66,12 +70,24 @@ export const Label = styled.label`
   font-size: 13px;
   color: var(--lighterNavyBlue);
   margin-bottom: 0.1875rem;
+
+  @media (min-width: 768px) {
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.125rem;
+  }
 `;
 
-export const Description = styled.p`
-  font-size: 0.8125em;
+export const Sublabel = styled.label`
   margin-bottom: 1rem;
   color: var(--dullGray);
+  font-size: 0.875rem;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -87,6 +103,10 @@ export const TextInput = styled(Input)`
         outline: 1px solid red;
       }
     `}
+
+  @media (min-width: 768px) {
+    font-size: 0.9375rem;
+  }
 `;
 
 export const DescInput = styled(TextArea)`
@@ -101,28 +121,11 @@ export const DescInput = styled(TextArea)`
         border: none;
       }
     `}
+
+  @media (min-width: 768px) {
+    font-size: 0.9375rem;
+  }
 `;
-
-// const ListButton = styled.button`
-//   padding: 0.8125rem 1.5rem;
-//   background-color: #f7f8fd;
-//   border: none;
-//   margin-bottom: 1.5rem;
-//   border-radius: 5px;
-//   display: flex;
-//   justify-content: space-between;
-//   position: relative;
-
-//   &:focus {
-//     outline-style: solid;
-//     outline-color: #4661e6;
-//     outline-width: thin;
-//   }
-
-//   ::after {
-//     content: url("/assets/shared/icon-arrow-down.svg");
-//   }
-// `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
