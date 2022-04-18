@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useWindowDimensions from "../../hooks/window";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../features/user/userSlice";
 import { Link } from "react-router-dom";
-import { StyledButton } from "../../styles/reusable/Button";
+
 import MobileMenu from "./MobileMenu";
 import Sidebar from "./Sidebar";
 import Roadmap from "./Roadmap";
+import styled from "styled-components/macro";
 import {
   Container,
   Header,
@@ -15,7 +16,6 @@ import {
   SecondaryTitle,
   Icon,
 } from "../../styles/headerStyles";
-import styled from "styled-components/macro";
 
 const Button = styled.button`
   color: white;
@@ -47,15 +47,15 @@ const SuggestionsHeader = () => {
   const dispatch = useDispatch();
 
   //getting the current user who's logged in
-  const user = useSelector((state) => state.user.value["name"]);
+  const { name } = useSelector((state) => state.user.value);
 
   return (
     <Container>
       <Header>
         <Div>
-          {width >= 768 ? (
+          {width >= 768 && (
             <div>
-              {user !== "Guest" ? (
+              {name !== "Guest" ? (
                 <Button onClick={() => dispatch(logout())}>Logout</Button>
               ) : (
                 <LinkWrapper>
@@ -69,10 +69,10 @@ const SuggestionsHeader = () => {
                 </LinkWrapper>
               )}
             </div>
-          ) : null}
+          )}
 
           <div>
-            <Title>Welcome, {user ? user : "Guest"}</Title>
+            <Title>Welcome, {name ? name : "Guest"}</Title>
             <SecondaryTitle>Feedback Board</SecondaryTitle>
           </div>
         </Div>
@@ -82,23 +82,22 @@ const SuggestionsHeader = () => {
             <Icon
               src="/assets/shared/mobile/icon-close.svg"
               alt="Close menu icon"
-              onClick={() => setIsOpen(false)}
+              onClick={() => setIsOpen(!isOpen)}
             />
           ) : (
             <Icon
               src="/assets/shared/mobile/icon-hamburger.svg"
               alt="Menu icon"
-              onClick={() => setIsOpen(true)}
+              onClick={() => setIsOpen(!isOpen)}
             />
           )}
         </div>
       </Header>
 
-      {width >= 768 ? <Sidebar /> : null}
-      {width >= 768 ? <Roadmap /> : null}
+      {width >= 768 && <Sidebar />}
+      {width >= 768 && <Roadmap />}
 
-      {/* TODO: fix so you don't have to manually close the menu */}
-      {isOpen && width < 768 ? <MobileMenu toggle={setIsOpen} /> : null}
+      {isOpen && width < 768 && <MobileMenu toggle={setIsOpen} />}
     </Container>
   );
 };

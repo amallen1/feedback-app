@@ -1,4 +1,3 @@
-import React from "react";
 import Feedback from "./Feedback";
 import styled from "styled-components/macro";
 import EmptyFeedbackList from "./EmptyFeedbackList";
@@ -23,7 +22,8 @@ const FeedbackList = () => {
 
   const sortData = (copydata) => {
     let newData = [];
-    if (copydata !== undefined) {
+
+    if (copydata) {
       newData = [...copydata];
 
       if (sortingCategory === "Most Upvotes") {

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { login, logout } from "../features/user/userSlice";
+import { login } from "../features/user/userSlice";
 import {
   Container,
   Wrapper,

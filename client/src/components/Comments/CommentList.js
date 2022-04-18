@@ -1,36 +1,22 @@
-import styled from "styled-components/macro";
 import Comment from "./Comment";
+import { Container, Heading } from "../../styles/Comments/commentStyles";
+import { useGetCommentsQuery } from "../../services/feedbacks";
 
-const Container = styled.div`
-  background-color: var(--white);
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-`;
-
-const Heading = styled.h3`
-  color: var(--lighterNavyBlue);
-`;
-
-// let commentCount =
-//   data.length === 1 ? "red" : task.priority === 2 ? "yellow" : "green";
-// {data ? data.length === 1`${data.length} Comments` : "0 Comments"}
-
-const CommentList = ({ data }) => {
+const CommentList = ({ feedback }) => {
+  const { data: comments } = useGetCommentsQuery(feedback["_id"]);
   return (
     <Container>
       <Heading>
-        {data
-          ? data.length === 1
+        {comments
+          ? comments.length === 1
             ? "1 Comment"
-            : `${data.length} Comments`
+            : `${comments.length} Comments`
           : null}
       </Heading>
-      {data
-        ? data.map((comment, index) => {
-            return <Comment comment={comment} key={index} />;
-          })
-        : null}
+      {comments &&
+        comments.map((comment, index) => {
+          return <Comment comment={comment} key={index} />;
+        })}
     </Container>
   );
 };

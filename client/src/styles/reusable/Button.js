@@ -1,29 +1,7 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 
-export const Button = styled.button`
-  background-color: var(--brightPurple);
-  background-color: var(--brightPurple);
-  color: var(--buttonTextColor);
-  padding: 0.625rem 1rem;
-  font-weight: 700;
-  font-size: 0.8125rem;
-  display: inline-block;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-
-  :hover {
-    background-color: var(--hoverPurple);
-  }
-
-  @media (min-width: 768px) {
-    font-size: 0.875rem;
-    padding: 0.75rem 1.5rem;
-  }
-`;
-
+//Styles for buttons that navigate to a different page
 export const StyledButton = styled.a`
-  /* background-color: ${(props) => props.bgcolor}; */
   background-color: var(--brightPurple);
   color: var(--buttonTextColor);
   padding: 0.625rem 1rem;
@@ -62,8 +40,9 @@ export const CancelButton = styled(StyledButton)`
 `;
 
 export const DeleteButton = styled(StyledButton)`
+  background-color: var(--brightRed);
   :hover {
-    background-color: var(--brightRed);
+    background-color: var(--hoverRed);
   }
 `;
 
@@ -74,7 +53,7 @@ export const EditButton = styled(StyledButton)`
   }
 `;
 
-export const BackButton = styled.a`
+export const BackButton = styled.button`
   ::before {
     content: url("/assets/shared/icon-arrow-left.svg");
     margin-right: 14px;
@@ -90,62 +69,78 @@ export const BackButton = styled.a`
 `;
 
 //Actual buttons
+export const Button = styled.button`
+  background-color: var(--brightPurple);
+  color: var(--buttonTextColor);
+  padding: 0.625rem 1rem;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  display: inline-block;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+
+  :hover {
+    background-color: var(--hoverPurple);
+  }
+
+  @media (min-width: 768px) {
+    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
+  }
+`;
+
 export const FilterButton = styled.button`
   padding: 0.3125rem 1rem 0.375rem;
   border-radius: 10px;
-  /* background-color: var(--lightGray); */
   background-color: ${({ selected }) =>
     selected ? "var(--royalBlue)" : "var(--lightGray)"};
   font-weight: 600;
-  /* color: var(--royalBlue); */
   color: ${({ selected }) =>
     selected ? "var(--lightGray)" : "var(--royalBlue)"};
-  font-size: 13px;
-  text-transform: capitalize;
+  font-size: .8125rem;
 
   :hover {
     background-color: var(--paleBlue);
-  }
-
-  :active {
-    background-color: var(--royalBlue);
-    color: var(--white);
   }
 
   ${({ margin }) => margin && { marginBottom: "1rem" }}
 `;
 
 export const UpvoteButton = styled.button`
+  background-color: ${({ selected }) =>
+    selected ? "var(--royalBlue)" : "var(--lightGray)"};
+  color: ${({ selected }) =>
+    selected ? "var(--white)" : "var(--lighterNavyBlue)"};
   padding: 0.375rem 1rem 0.4375rem 0.8125rem;
   border-radius: 10px;
-  background-color: var(--offWhite);
-  font-weight: 600;
-  color: var(--lighterNavyBlue);
-  font-size: 13px;
-  position: relative;
+  font-weight: 700;
+  font-size: 0.8125rem;
   width: 69px;
+  display: flex;
+  justify-content: space-evenly;
+
+  :before {
+    content: url("/assets/shared/icon-arrow-up.svg");
+  }
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      :before {
+        content: url("/assets/shared/white-up-arrow.svg");
+      }
+    `}
 
   :hover {
     background-color: var(--paleBlue);
   }
 
-  :active {
-    background-color: var(--royalBlue);
-    color: var(--white);
-  }
-
-  ::before {
-    content: url("/assets/shared/icon-arrow-up.svg");
-    margin-right: 9px;
-  }
-
   @media (min-width: 768px) {
+    flex-direction: column;
+    align-items: center;
     padding: 0.25rem 0.7rem 0.5rem;
     height: 53px;
     width: 40px;
-
-    ::before {
-      margin: 0;
-    }
   }
 `;

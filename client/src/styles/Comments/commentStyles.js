@@ -1,5 +1,6 @@
 import styled from "styled-components/macro";
 
+//Comment styles
 export const CommentContainer = styled.div`
   font-size: 13px;
   color: var(--dullGray);
@@ -50,4 +51,17 @@ export const Span = styled.span`
   color: var(--brightPurple);
   margin-right: 5px;
   font-weight: 700;
+`;
+
+//CommentList styles
+
+export const Container = styled.div`
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+`;
+
+export const Heading = styled.h3`
+  color: var(--lighterNavyBlue);
 `;

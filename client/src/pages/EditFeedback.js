@@ -1,9 +1,17 @@
 import { useState } from "react";
+import styled from "styled-components/macro";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { nanoid } from "@reduxjs/toolkit";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import {
+  useUpdateSuggestionMutation,
+  useDeleteSuggestionMutation,
+} from "../services/feedbacks";
 
-import { CancelButton, BackButton } from "../styles/reusable/Button";
+import {
+  BackButton,
+  CancelButton,
+  DeleteButton,
+} from "../styles/reusable/Button";
 import ContainerDiv from "../styles/reusable/Container";
 import Dropdown from "../components/Dropdown";
 
@@ -15,7 +23,6 @@ import {
   TextInput,
   ErrorMessage,
   DescInput,
-  ButtonWrapper,
   StyledButton,
   Title,
   Card,
@@ -23,15 +30,46 @@ import {
   Nav,
 } from "../styles/newFeedbackStyles";
 
-import { useAddSuggestionMutation } from "../services/feedbacks";
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 
-export const NewFeedback = () => {
+  a:nth-child(1) {
+    order: 3;
+  }
+
+  @media (min-width: 500px) {
+    flex-direction: row;
+
+    a:nth-child(1) {
+      order: -1;
+    }
+
+    a:nth-child(3) {
+      margin-left: auto;
+      margin-right: 1rem;
+    }
+
+    button {
+      order: 1;
+      justify-self: flex-end;
+    }
+  }
+`;
+
+export const EditFeedback = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const [title, setTitle] = useState(state.title);
+  const [category, setCategory] = useState(state.category);
+  const [status, setStatus] = useState(state.status);
+  const [description, setDescription] = useState(state.description);
 
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("Feature");
-  const [description, setDescription] = useState("");
   const categories = ["Feature", "UI", "UX", "Enhancement", "Bug"];
+  const statuses = ["Suggestion", "Planned", "In-Progress", "Live"];
+
+  const [updateSuggestion] = useUpdateSuggestionMutation();
+  const [deleteSuggestion, { isLoading }] = useDeleteSuggestionMutation();
 
   const {
     register,
@@ -40,28 +78,38 @@ export const NewFeedback = () => {
     formState: { errors },
   } = useForm();
 
-  const [addSuggestion] = useAddSuggestionMutation();
+  const update = () => {
+    console.log(title);
+    console.log(category);
+    console.log(status);
+    console.log(description);
+
+    const data = {
+      id: state["_id"],
+      body: {
+        title: title,
+        category: category,
+        status: status,
+        description: description,
+      },
+    };
+    updateSuggestion(data);
+  };
 
   const onSubmit = () => {
-    addSuggestion({
-      id: nanoid(),
-      title: title,
-      category: category,
-      description: description,
-      upvotes: 0,
-      status: "Suggestion",
-      comments: [],
-    })
-      .then((res) => console.log(res))
-      .catch((error) => console.log(error));
+    update();
+    navigate("/");
+  };
 
+  const remove = () => {
+    deleteSuggestion(state["_id"]);
     navigate("/");
   };
 
   return (
     <ContainerDiv>
       <Nav>
-        <BackButton onClick={() => navigate("/")} color="var(--dullGray)">
+        <BackButton onClick={() => navigate(-1)} color="var(--dullGray)">
           Go Back
         </BackButton>
       </Nav>
@@ -71,7 +119,8 @@ export const NewFeedback = () => {
           src="/assets/shared/icon-new-feedback.svg"
           alt="Add feedback icon"
         />
-        <Title>Create New Feedback</Title>
+
+        <Title>{`Editing '${state.title}'`}</Title>
 
         <Form onSubmit={handleSubmit(() => onSubmit())}>
           <Label htmlFor="title">Feedback Title</Label>
@@ -91,7 +140,7 @@ export const NewFeedback = () => {
             {errors.title && <ErrorMessage>Can't be empty</ErrorMessage>}
           </InputWrapper>
 
-          <Label htmlFor="category">Category</Label>
+          <Label>Category</Label>
           <Sublabel>Choose a category for your feedback</Sublabel>
           <Dropdown
             optionsList={categories}
@@ -100,12 +149,20 @@ export const NewFeedback = () => {
           />
           <input type="hidden" value={category} />
 
-          <Label htmlFor="detail">Feedback Detail</Label>
+          <Label>Update Status</Label>
+          <Sublabel>Change feedback state</Sublabel>
+          <Dropdown
+            optionsList={statuses}
+            currOption={status}
+            setCategory={setStatus}
+          />
+          <input type="hidden" value={status} />
+
+          <Label>Feedback Detail</Label>
           <Sublabel>
             Include any specific comments on what should be improved, added,
             etc.
           </Sublabel>
-
           <InputWrapper>
             <DescInput
               {...register("description", { required: true })}
@@ -120,8 +177,12 @@ export const NewFeedback = () => {
           </InputWrapper>
 
           <ButtonWrapper>
+            <DeleteButton onClick={() => remove()} margin="true">
+              Delete
+            </DeleteButton>
+
             <StyledButton type="submit" margin="true">
-              Add feedback
+              Save Changes
             </StyledButton>
 
             <CancelButton as={Link} to="/" margin="true">

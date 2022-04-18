@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 import { logout } from "../../features/user/userSlice";
@@ -8,11 +7,7 @@ import Sidebar from "./Sidebar";
 import Roadmap from "./Roadmap";
 import { StyledButton } from "../../styles/reusable/Button";
 
-const Wrapper = styled.div`
-  position: relative;
-`;
-
-const Div = styled.div`
+const Overlay = styled.div`
   background-color: #000;
   opacity: 50%;
   height: 100%;
@@ -33,11 +28,6 @@ const Menu = styled.div`
   right: 0px;
 `;
 
-const LinkWrapper = styled.div`
-  /* display: flex; */
-  /* width: 100%; */
-`;
-
 const Button = styled(StyledButton)`
   width: 80%;
   display: block;
@@ -49,19 +39,17 @@ const MobileMenu = ({ toggle }) => {
   const user = useSelector((state) => state.user.value["name"]);
 
   return (
-    <Wrapper>
-      <Div onClick={() => toggle()} />
+    <div>
+      <Overlay onClick={() => toggle()} />
       <Menu>
-        {user ? (
-          <LinkWrapper>
-            <Button
-              onClick={() => dispatch(logout({ name: null, username: null }))}
-            >
-              Logout
-            </Button>
-          </LinkWrapper>
+        {user !== "Guest" ? (
+          <Button
+            onClick={() => dispatch(logout({ name: null, username: null }))}
+          >
+            Logout
+          </Button>
         ) : (
-          <LinkWrapper>
+          <div>
             <Button as={Link} to="/login">
               Login
             </Button>
@@ -69,13 +57,13 @@ const MobileMenu = ({ toggle }) => {
             <Button as={Link} to="/signup">
               Sign Up
             </Button>
-          </LinkWrapper>
+          </div>
         )}
 
         <Sidebar />
         <Roadmap />
       </Menu>
-    </Wrapper>
+    </div>
   );
 };
 

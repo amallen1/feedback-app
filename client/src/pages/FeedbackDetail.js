@@ -1,30 +1,26 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
-// import ContainerDiv from "../styles/reusable/Container";
-import Feedback from "../components/Feedback/Feedback";
-import styled from "styled-components/macro";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import styled from "styled-components/macro";
 
 import { Button, BackButton, EditButton } from "../styles/reusable/Button";
-import { Link } from "react-router-dom";
 import { TextArea } from "../styles/reusable/Forms";
+import Feedback from "../components/Feedback/Feedback";
 import CommentList from "../components/Comments/CommentList";
-import {
-  useAddCommentMutation,
-  useGetCommentsQuery,
-} from "../services/feedbacks";
+import { useAddCommentMutation } from "../services/feedbacks";
 
-const Container = styled.div`
+export const Container = styled.div`
   padding: 2.125rem 1.5rem;
   max-width: 689px;
   margin: 0 auto;
 `;
 
-const Nav = styled.div`
+export const Nav = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
+  height: 39px;
 `;
 
 const AddComment = styled.div`
@@ -56,12 +52,12 @@ const TextInput = styled(TextArea)`
 `;
 
 export const FeedbackDetail = () => {
-  const { state } = useLocation();
-
   const MAX_LENGTH = 250;
   const [message, setMessage] = useState("");
   const [charCount, setCharCount] = useState(MAX_LENGTH);
 
+  const { state } = useLocation(); //the info about this feedback
+  const navigate = useNavigate();
   const [addComment] = useAddCommentMutation();
   const { name, username } = useSelector((state) => state.user.value);
 
@@ -72,8 +68,6 @@ export const FeedbackDetail = () => {
   };
 
   const submitComment = () => {
-    console.log("ADDING COMMENT");
-
     addComment({
       title: state.title,
       message: message,
@@ -84,24 +78,16 @@ export const FeedbackDetail = () => {
       .catch((error) => console.log(error));
   };
 
-  const { data, isSuccess, isFetching, refetch } = useGetCommentsQuery(
-    state["_id"]
-  );
-  console.log(data);
-  console.log(isSuccess);
-
-  console.log(name);
-  console.log(username);
-
   return (
     <Container>
       <Nav>
-        <BackButton as={Link} to="/" color="var(--dullGray)">
+        <BackButton onClick={() => navigate("/")} color="var(--dullGray)">
           Go Back
         </BackButton>
         <EditButton
-        //   as={Link}
-        //   to={`/edit-feedback/${id}`}
+          as={Link}
+          to={`/edit-feedback/${state["_id"]}`}
+          state={state}
         >
           Edit Feedback
         </EditButton>
@@ -109,7 +95,7 @@ export const FeedbackDetail = () => {
 
       <Feedback feedback={state} />
 
-      <CommentList data={data} />
+      <CommentList feedback={state} />
 
       <AddComment>
         <h3>Add comment</h3>
