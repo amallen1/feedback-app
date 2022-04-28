@@ -6,6 +6,7 @@ import { useGetAllSuggestionsQuery } from "../../services/feedbacks";
 
 const Container = styled.div`
   padding: 2em 1em 2.4375em 1em;
+  height: 100%;
 
   @media (min-width: 768px) {
     padding: 0;
@@ -40,7 +41,7 @@ const FeedbackList = () => {
     return newData;
   };
 
-  const { data } = useGetAllSuggestionsQuery(undefined, {
+  const { data: feedbackList } = useGetAllSuggestionsQuery({
     selectFromResult: ({ data }) => ({
       data:
         category === "All"
@@ -51,12 +52,16 @@ const FeedbackList = () => {
 
   return (
     <Container>
-      {data && data.length > 0 ? (
-        data.map((feedback, index) => {
-          return <Feedback feedback={feedback} key={index} />;
-        })
+      {feedbackList ? (
+        feedbackList.length > 0 ? (
+          feedbackList.map((feedback, index) => {
+            return <Feedback feedback={feedback} key={index} />;
+          })
+        ) : (
+          <EmptyFeedbackList />
+        )
       ) : (
-        <EmptyFeedbackList />
+        <h1>Loading...</h1>
       )}
     </Container>
   );

@@ -11,6 +11,10 @@ export const feedbackApi = createApi({
       query: () => "/get_suggestions",
       providesTags: [{ type: "Suggestions", id: "LIST" }],
     }),
+    getRoadmapFeedbacks: builder.query({
+      query: () => "/get_feedbacks",
+      providesTags: [{ type: "Suggestions", id: "LIST" }],
+    }),
     addSuggestion: builder.mutation({
       query(body) {
         return {
@@ -88,6 +92,7 @@ export const feedbackApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useGetAllSuggestionsQuery,
+  useGetRoadmapFeedbacksQuery,
   useAddSuggestionMutation,
   useUpdateSuggestionMutation,
   useDeleteSuggestionMutation,

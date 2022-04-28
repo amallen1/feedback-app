@@ -12,6 +12,16 @@ router.get("/api/get_suggestions", async (req, res) => {
   }
 });
 
+router.get("/api/get_feedbacks", async (req, res) => {
+  //find all comments with status of planned, in progess, and live
+  try {
+    const feedbacks = await Feedback.find({ status: {$in: ['Planned', 'In-progress', 'Live']} });
+    res.status(200).json(feedbacks);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 //add a suggestion to the database
 router.post("/api/add_suggestion", async (req, res) => {
   const { title, category, description } = req.body;
