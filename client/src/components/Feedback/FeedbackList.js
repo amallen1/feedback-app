@@ -41,7 +41,7 @@ const FeedbackList = () => {
     return newData;
   };
 
-  const { data: feedbackList } = useGetAllSuggestionsQuery({
+  const { data: feedbackList } = useGetAllSuggestionsQuery(undefined, {
     selectFromResult: ({ data }) => ({
       data:
         category === "All"
