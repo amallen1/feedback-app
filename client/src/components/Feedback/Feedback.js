@@ -70,7 +70,7 @@ const Feedback = ({ feedback }) => {
       ) : (
         <StyledLink
           style={{ display: "block" }}
-          to={`feedback/${feedback["_id"]}`}
+          to={`/feedback/${feedback["_id"]}`}
           state={feedback}
         >
           <MainInfo>

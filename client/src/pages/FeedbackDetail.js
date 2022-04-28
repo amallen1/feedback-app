@@ -81,7 +81,7 @@ export const FeedbackDetail = () => {
   return (
     <Container>
       <Nav>
-        <BackButton onClick={() => navigate("/")} color="var(--dullGray)">
+        <BackButton onClick={() => navigate(-1)} color="var(--dullGray)">
           Go Back
         </BackButton>
         <EditButton
