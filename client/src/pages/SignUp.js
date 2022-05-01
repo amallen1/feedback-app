@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { login } from "../features/user/userSlice";
 import {
-  Container,
+  Background,
   Wrapper,
   Title,
+  FormTitle,
   Form,
   FormButton,
 } from "../styles/loginStyles";
@@ -68,9 +69,10 @@ export const SignUp = () => {
   } = useForm();
 
   return (
-    <Container>
+    <Background>
       <Wrapper>
-        <Title>Sign Up</Title>
+        <Title>Join today!</Title>
+        <FormTitle>Sign Up</FormTitle>
         {errorMessage ? <p>{signupError}</p> : null}
 
         {accountCreated ? <p>Account successfully created!</p> : null}
@@ -136,11 +138,11 @@ export const SignUp = () => {
             )}
           </InputWrapper>
 
-          <FormButton>Sign Up</FormButton>
+          <FormButton>Sign Up!</FormButton>
         </Form>
 
         <Link to="/login">Already have an account?</Link>
       </Wrapper>
-    </Container>
+    </Background>
   );
 };

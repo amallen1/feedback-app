@@ -18,5 +18,10 @@ export default configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
+      // serializableCheck: {
+      //   ignoredActionPaths: [
+      //     "feedbackApi.queries.getAllSuggestions({}).originalArgs.selectFromResult",
+      //   ],
+      // },
     }).concat(suggestionApi.middleware),
 });
