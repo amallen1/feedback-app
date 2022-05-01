@@ -1,8 +1,12 @@
-import Feedback from "./Feedback";
-import styled from "styled-components/macro";
-import EmptyFeedbackList from "./EmptyFeedbackList";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useGetAllSuggestionsQuery } from "../../services/feedbacks";
+import styled from "styled-components/macro";
+
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+import EmptyFeedbackList from "./EmptyFeedbackList";
+import Feedback from "./Feedback";
 
 const Container = styled.div`
   padding: 2em 1em 2.4375em 1em;
@@ -21,6 +25,10 @@ const FeedbackList = () => {
 
   const sortingCategory = useSelector((state) => state.sortingCategories.value);
 
+  const { data, isLoading } = useGetAllSuggestionsQuery();
+
+  const [feedbackList, setFeedbackList] = useState(data);
+
   const sortData = (copydata) => {
     let newData = [];
 
@@ -38,21 +46,20 @@ const FeedbackList = () => {
       }
     }
 
-    return newData;
+    setFeedbackList(newData);
   };
 
-  const { data: feedbackList } = useGetAllSuggestionsQuery(undefined, {
-    selectFromResult: ({ data }) => ({
-      data:
-        category === "All"
-          ? sortData(data)
-          : sortData(data?.filter((item) => item.category === category)),
-    }),
-  });
+  useEffect(() => {
+    if (category === "All") {
+      sortData(data);
+    } else {
+      sortData(data?.filter((item) => item.category === category));
+    }
+  }, [data, category, sortingCategory]);
 
   return (
     <Container>
-      {feedbackList ? (
+      {!isLoading && feedbackList ? (
         feedbackList.length > 0 ? (
           feedbackList.map((feedback, index) => {
             return <Feedback feedback={feedback} key={index} />;
@@ -61,7 +68,14 @@ const FeedbackList = () => {
           <EmptyFeedbackList />
         )
       ) : (
-        <h1>Loading...</h1>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
       )}
     </Container>
   );

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { login } from "../features/user/userSlice";
 
 import {
-  Container,
+  Background,
   Wrapper,
   Title,
   FormTitle,
@@ -26,6 +26,7 @@ export const Login = () => {
 
   const onSubmit = () => {
     setAccountError(false);
+
     fetch(`${process.env.REACT_APP_BASE_URL}/api/login`, {
       method: "POST",
       headers: {
@@ -40,7 +41,7 @@ export const Login = () => {
       .then((res) => {
         if (res.status === "ok") {
           console.log(res);
-          //storing jwt token in local storage
+
           localStorage.setItem("token", res.token);
           localStorage.setItem("name", res.name);
           localStorage.setItem("username", res.username);
@@ -67,9 +68,9 @@ export const Login = () => {
   } = useForm();
 
   return (
-    <Container>
+    <Background>
       <Wrapper>
-        <Title> Product Feedback App</Title>
+        <Title>Product Feedback App</Title>
         <FormTitle>Login</FormTitle>
 
         {accountError && (
@@ -115,6 +116,6 @@ export const Login = () => {
           <Link to="/signup">Don't have an account?</Link>
         </Links>
       </Wrapper>
-    </Container>
+    </Background>
   );
 };

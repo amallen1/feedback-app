@@ -1,6 +1,8 @@
 import styled from "styled-components/macro";
 
-export const Container = styled.div`
+// Styles for Login.js and SignUp.js
+
+export const Background = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
