@@ -32,10 +32,6 @@ export const GlobalStyles = createGlobalStyle`${css`
     font-family: "Jost", sans-serif;
   }
 
-  /* html,
-  body {
-    height: 100%;
-  } */
   html,
   body {
     min-height: 100vh;

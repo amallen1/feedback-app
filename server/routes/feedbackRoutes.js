@@ -15,7 +15,9 @@ router.get("/api/get_suggestions", async (req, res) => {
 router.get("/api/get_feedbacks", async (req, res) => {
   //find all comments with status of planned, in progess, and live
   try {
-    const feedbacks = await Feedback.find({ status: {$in: ['Planned', 'In-progress', 'Live']} });
+    const feedbacks = await Feedback.find({
+      status: { $in: ["Planned", "In-progress", "Live"] },
+    });
     res.status(200).json(feedbacks);
   } catch (error) {
     console.log(error);
@@ -80,8 +82,6 @@ router.delete("/api/delete_suggestion/:id", async (req, res) => {
 
 //increment upvotes
 router.put("/api/:id/upvote", async (req, res) => {
-  // console.log("UPVOTING");
-
   const { id } = req.params;
   const { username } = req.body;
   try {
@@ -111,8 +111,6 @@ router.put("/api/:id/upvote", async (req, res) => {
 
 //decrement upvotes
 router.put("/api/:id/downvote", async (req, res) => {
-  // console.log("DOWNVOTING");
-
   const { id } = req.params;
   const { username } = req.body;
 

@@ -26,9 +26,7 @@ router.post("/api/add_comment", async (req, res) => {
   const { title, message, name, username } = req.body;
 
   try {
-    //find one returns a document
     const feedback = await Feedback.findOne({ title: title });
-    // console.log(feedback);
 
     const newComment = await Comment.create({
       content: message,
@@ -37,8 +35,6 @@ router.post("/api/add_comment", async (req, res) => {
         username: username,
       },
     });
-    // console.log(".....................");
-    // console.log("what is the new comment?");
     console.log(newComment);
 
     feedback.comments.push(newComment);
