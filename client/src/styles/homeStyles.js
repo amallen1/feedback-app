@@ -1,17 +1,13 @@
 import styled from "styled-components/macro";
 
 export const HomeContainer = styled.div`
-  height: inherit;
-  display: flex;
-  flex-direction: column;
-
   @media (min-width: 768px) {
     max-width: 689px;
     margin: 3.5rem auto;
   }
 
   @media (min-width: 1000px) {
-    flex-direction: row;
+    display: flex;
     max-width: none;
     justify-content: center;
     column-gap: 2rem;
@@ -20,6 +16,13 @@ export const HomeContainer = styled.div`
 `;
 
 export const FirstSection = styled.div`
+  @media (max-width: 767px) {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+  }
+
   @media (min-width: 768px) {
     margin-bottom: 2.5rem;
   }
@@ -30,9 +33,11 @@ export const FirstSection = styled.div`
 `;
 
 export const SecondSection = styled.div`
-  height: inherit;
   width: 100%;
-  overflow: scroll;
+
+  @media (max-width: 767px) {
+    margin-top: 74px;
+  }
 
   @media (min-width: 768px) {
     overflow: initial;

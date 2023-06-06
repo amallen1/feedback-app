@@ -24,7 +24,6 @@ export const Search = styled.div`
   margin-bottom: 1.5rem;
 
   @media (min-width: 768px) {
-    max-width: 223px;
     margin-bottom: 0;
     flex: 1;
   }
@@ -36,7 +35,6 @@ export const RoadmapContainer = styled.div`
   border-radius: 10px;
 
   @media (min-width: 768px) {
-    max-width: 223px;
     max-height: 178px;
     flex: 1;
   }
