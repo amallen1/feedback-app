@@ -36,11 +36,7 @@ export const SecondSection = styled.div`
   width: 100%;
 
   @media (max-width: 767px) {
-    margin-top: 74px;
-  }
-
-  @media (min-width: 768px) {
-    overflow: initial;
+    margin-top: 76px;
   }
 
   @media (min-width: 1100px) {

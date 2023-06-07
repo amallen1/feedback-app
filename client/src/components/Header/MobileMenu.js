@@ -8,14 +8,14 @@ import Roadmap from "./Roadmap";
 import { StyledButton } from "../../styles/reusable/Button";
 
 const Overlay = styled.div`
-  background-color: #000;
-  opacity: 50%;
+  background-color: var(--black);
   height: 100%;
   width: 100%;
   position: fixed;
   z-index: 100;
   animation-name: overlayFade;
   animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 
   @keyframes overlayFade {
     from {
@@ -28,16 +28,15 @@ const Overlay = styled.div`
 `;
 
 const Menu = styled.div`
-  background-color: #f7f8fd;
-  height: calc(100vh - (72px));
+  background-color: var(--offWhite);
   width: 72%;
   height: 100%;
-  margin-left: auto;
   z-index: 150;
-  padding: 1.5em 1.5em 0 1.5em;
+  padding: 1.5rem 1.5rem 0 1.5rem;
   position: fixed;
   animation-name: slideIn;
   animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 
   @keyframes slideIn {
     from {
@@ -50,9 +49,9 @@ const Menu = styled.div`
 `;
 
 const Button = styled(StyledButton)`
-  width: 80%;
   display: block;
   margin: 0 auto 1rem;
+  max-width: 225px;
 `;
 
 const MobileMenu = ({ toggle }) => {

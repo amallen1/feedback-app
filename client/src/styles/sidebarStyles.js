@@ -1,19 +1,5 @@
 import styled from "styled-components/macro";
 
-export const Menu = styled.div`
-  background-color: #f7f8fd;
-  height: calc(100vh - (72px));
-  width: 72%;
-  margin-left: auto;
-  padding: 1.5rem 1.5rem 0 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  position: absolute;
-  right: 0;
-  z-index: 10;
-`;
-
 export const Search = styled.div`
   background-color: var(--white);
   padding: 1.5rem 1rem 2.25rem 1.5rem;
@@ -43,12 +29,17 @@ export const RoadmapContainer = styled.div`
 export const RoadmapView = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5em;
+  margin-bottom: 1.5rem;
 `;
 
 export const ViewLink = styled.a`
-  color: #4661e6;
+  color: var(--royalBlue);
   font-weight: 600;
+  text-decoration: underline;
+
+  :hover {
+    color: #8397f8;
+  }
 `;
 
 export const ProgressTracker = styled.div`
@@ -84,5 +75,5 @@ export const ListItem = styled.li`
 
 export const Span = styled.span`
   font-weight: 700;
-  color: #647196;
+  color: var(--dullGray);
 `;
