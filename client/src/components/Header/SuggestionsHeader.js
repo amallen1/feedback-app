@@ -11,7 +11,7 @@ import styled from "styled-components/macro";
 import {
   Container,
   Header,
-  Div,
+  HeaderContent,
   Title,
   SecondaryTitle,
   Icon,
@@ -52,7 +52,7 @@ const SuggestionsHeader = () => {
   return (
     <Container>
       <Header>
-        <Div>
+        <HeaderContent>
           {width >= 768 && (
             <div>
               {name !== "Guest" ? (
@@ -75,23 +75,25 @@ const SuggestionsHeader = () => {
             <Title>Welcome, {name ? name : "Guest"}</Title>
             <SecondaryTitle>Feedback Board</SecondaryTitle>
           </div>
-        </Div>
+        </HeaderContent>
 
-        <div>
-          {isOpen ? (
-            <Icon
-              src="/assets/shared/mobile/icon-close.svg"
-              alt="Close menu icon"
-              onClick={() => setIsOpen(!isOpen)}
-            />
-          ) : (
-            <Icon
-              src="/assets/shared/mobile/icon-hamburger.svg"
-              alt="Menu icon"
-              onClick={() => setIsOpen(!isOpen)}
-            />
-          )}
-        </div>
+        {width < 768 && (
+          <div>
+            {isOpen ? (
+              <Icon
+                src="/assets/shared/mobile/icon-close.svg"
+                alt="Close menu icon"
+                onClick={() => setIsOpen(!isOpen)}
+              />
+            ) : (
+              <Icon
+                src="/assets/shared/mobile/icon-hamburger.svg"
+                alt="Open menu icon"
+                onClick={() => setIsOpen(!isOpen)}
+              />
+            )}
+          </div>
+        )}
       </Header>
 
       {width >= 768 && <Sidebar />}

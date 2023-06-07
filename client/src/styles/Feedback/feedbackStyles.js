@@ -41,7 +41,6 @@ export const Title = styled.h3`
   @media (min-width: 768px) {
     font-size: 1.125rem;
     letter-spacing: -0.25px;
-    /* line-height: auto; */
   }
 `;
 
