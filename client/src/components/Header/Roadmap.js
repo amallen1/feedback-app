@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useGetRoadmapFeedbacksQuery } from "../../services/feedbacks";
 import {
   RoadmapContainer,
   RoadmapView,
@@ -11,9 +12,25 @@ import {
 } from "../../styles/sidebarStyles";
 
 const Roadmap = () => {
-  const [planned, setPlanned] = useState(2);
-  const [inProgress, setInProgress] = useState(3);
-  const [live, setLive] = useState(1);
+  //grab the roapma data
+  const { data, isLoading } = useGetRoadmapFeedbacksQuery();
+
+  const [planned, setPlanned] = useState(0);
+  const [inProgress, setInProgress] = useState(0);
+  const [live, setLive] = useState(0);
+
+  const setValues = () => {
+    setPlanned(data.filter((item) => item.status === "Planned").length);
+    setInProgress(data.filter((item) => item.status === "In-progress").length);
+    setLive(data.filter((item) => item.status === "Live").length);
+  };
+
+  useEffect(() => {
+    if (data) {
+      setValues();
+    }
+  }, [data]);
+
   return (
     <RoadmapContainer>
       <RoadmapView>
@@ -25,15 +42,19 @@ const Roadmap = () => {
 
       <ProgressTracker>
         <ProgressList>
-          <ListItem color="var(--orange)">
-            Planned <Span>{planned}</Span>
-          </ListItem>
-          <ListItem color="var(--brightPurple)">
-            In Progress <Span>{inProgress}</Span>
-          </ListItem>
-          <ListItem color="var(--brightBlue)">
-            Live <Span>{live}</Span>
-          </ListItem>
+          {!isLoading && (
+            <div>
+              <ListItem color="var(--orange)">
+                Planned <Span>{planned}</Span>
+              </ListItem>
+              <ListItem color="var(--brightPurple)">
+                In Progress <Span>{inProgress}</Span>
+              </ListItem>
+              <ListItem color="var(--brightBlue)">
+                Live <Span>{live}</Span>
+              </ListItem>
+            </div>
+          )}
         </ProgressList>
       </ProgressTracker>
     </RoadmapContainer>

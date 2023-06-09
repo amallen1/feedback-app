@@ -5,7 +5,7 @@ export const feedbackApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_BASE_URL}/api`,
   }),
-  tagTypes: ["Suggestions", "Comments"],
+  tagTypes: ["Suggestions", "Comments", "Planned", "In-progress", "Live"],
   endpoints: (builder) => ({
     getAllSuggestions: builder.query({
       query: () => "/get_suggestions",
@@ -13,7 +13,7 @@ export const feedbackApi = createApi({
     }),
     getRoadmapFeedbacks: builder.query({
       query: () => "/get_feedbacks",
-      providesTags: [{ type: "Suggestions", id: "LIST" }],
+      providesTags: ["Planned", "In-progress", "Live"],
     }),
     addSuggestion: builder.mutation({
       query(body) {
@@ -36,7 +36,12 @@ export const feedbackApi = createApi({
           body,
         };
       },
-      invalidatesTags: [{ type: "Suggestions", id: "LIST" }],
+      invalidatesTags: [
+        { type: "Suggestions", id: "LIST" },
+        "Planned",
+        "In-progress",
+        "Live",
+      ],
     }),
     deleteSuggestion: builder.mutation({
       query(id) {
@@ -53,7 +58,7 @@ export const feedbackApi = createApi({
         return {
           url: `${id}/upvote`,
           method: "PUT",
-          body
+          body,
         };
       },
       invalidatesTags: [{ type: "Suggestions", id: "LIST" }],

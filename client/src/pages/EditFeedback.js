@@ -66,7 +66,7 @@ export const EditFeedback = () => {
   const [description, setDescription] = useState(state.description);
 
   const categories = ["Feature", "UI", "UX", "Enhancement", "Bug"];
-  const statuses = ["Suggestion", "Planned", "In-Progress", "Live"];
+  const statuses = ["Suggestion", "Planned", "In-progress", "Live"];
 
   const [updateSuggestion] = useUpdateSuggestionMutation();
   const [deleteSuggestion, { isLoading }] = useDeleteSuggestionMutation();
@@ -79,10 +79,6 @@ export const EditFeedback = () => {
   } = useForm();
 
   const update = () => {
-    console.log(title);
-    console.log(category);
-    console.log(status);
-    console.log(description);
 
     const data = {
       id: state["_id"],

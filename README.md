@@ -32,7 +32,7 @@ Users should be able to:
 - [x] Sort suggestions by most/least upvotes and most/least comments
 - [x] Filter suggestions by category
 - [] Add comments and replies to a product feedback request
-- [] Upvote product feedback requests
+- [] Upvote product feedback requests on all pages
 - [] **Bonus**: Keep track of any changes, even after refreshing the browser
 
 ### Screenshot
