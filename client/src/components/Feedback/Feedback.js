@@ -56,29 +56,25 @@ const Feedback = ({ feedback }) => {
   const { data } = useGetCommentsQuery(feedback["_id"]);
 
   useEffect(() => {
-    setSelected(feedback.likes.includes(username));
+    // setSelected(feedback.likes.includes(username));
   }, []);
 
   return (
     <Card>
-      {pathname.includes("feedback") ? (
-        <MainInfo>
-          <Title>{feedback.title}</Title>
-          <Description>{feedback.description}</Description>
-          <FilterButton>{feedback.category}</FilterButton>
-        </MainInfo>
-      ) : (
-        <StyledLink
-          style={{ display: "block" }}
-          to={`/feedback/${feedback["_id"]}`}
-          state={feedback}
-        >
+      {pathname === "/" || pathname === "/roadmap" ? (
+        <StyledLink to={`/feedback/${feedback["_id"]}`} state={feedback}>
           <MainInfo>
             <Title>{feedback.title}</Title>
             <Description>{feedback.description}</Description>
             <FilterButton>{feedback.category}</FilterButton>
           </MainInfo>
         </StyledLink>
+      ) : (
+        <MainInfo>
+          <Title>{feedback.title}</Title>
+          <Description>{feedback.description}</Description>
+          <FilterButton>{feedback.category}</FilterButton>
+        </MainInfo>
       )}
 
       <UpvoteDiv>

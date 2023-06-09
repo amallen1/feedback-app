@@ -56,6 +56,8 @@ export const Description = styled.p`
   }
 `;
 
+export const Status = styled(Description)``;
+
 export const CommentButton = styled.div`
   background-color: transparent;
   color: var(--lighterNavyBlue);
