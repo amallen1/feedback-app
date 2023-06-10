@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 
 import { BackButton, StyledButton } from "../styles/reusable/Button";
 
@@ -70,6 +70,10 @@ const Section = styled.button`
 
 export const RoadmapPage = () => {
   const navigate = useNavigate();
+  // console.log("AM I RERENDERING");
+  const location = useLocation();
+
+  console.log(location);
 
   const [status, setStatus] = useState("Planned");
   const [selected, setSelected] = useState([
@@ -77,12 +81,15 @@ export const RoadmapPage = () => {
     { name: "In-progress", selected: false },
     { name: "Live", selected: false },
   ]);
+  const [fakeVar, setFakeVar] = useState("fake");
 
   const { data, isLoading } = useGetRoadmapFeedbacksQuery(undefined, {
     selectFromResult: ({ data }) => ({
       data: data?.filter((item) => item.status === status),
     }),
   });
+
+  // const [feedbackList, setFeedbackList] = useState(data);
 
   const toggle = (value) => {
     setStatus(value.name);
@@ -97,6 +104,13 @@ export const RoadmapPage = () => {
 
     setSelected(copyArray);
   };
+
+  useEffect(() => {
+    console.log("testing in roadmap");
+    console.log("did something change");
+    console.log(data);
+    
+  }, [data]);
 
   const items = selected.map((item, index) => {
     return (

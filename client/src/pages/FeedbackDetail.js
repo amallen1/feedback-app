@@ -78,6 +78,7 @@ export const FeedbackDetail = () => {
       .catch((error) => console.log(error));
   };
 
+  console.log("test");
   return (
     <Container>
       <Nav>

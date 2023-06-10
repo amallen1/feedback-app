@@ -26,8 +26,11 @@ const Feedback = ({ feedback }) => {
   const [downvote] = useDownvoteSuggestionMutation();
 
   const username = useSelector((state) => state.user.value.username);
+  // console.log(username);
+  // console.log(`${feedback.title}: ${feedback.isLiked}`);
 
-  const toggleUpvote = () => {
+  const toggleVote = () => {
+    // console.log('asswipe')
     const data = {
       id: feedback["_id"],
       body: {
@@ -35,29 +38,24 @@ const Feedback = ({ feedback }) => {
       },
     };
 
-    if (selected) {
-      // console.log("DOWNVOTING");
+    if (feedback.isLiked) {
       setSelected(!selected);
+      console.log("downvoting")
       downvote(data).catch((error) => console.log(error));
     } else {
-      // console.log("UPVOTING");
       setSelected(!selected);
+      console.log("upvoting")
       upvote(data)
         .then((res) => {
-          // console.log(res.data.likes.includes(username));
-          if (res.data.likes.includes(username)) {
-            setSelected(true);
-          }
+          // if (res.data.likes.includes(username)) {
+          //   setSelected(true);
+          // }
         })
         .catch((error) => console.log(error));
     }
   };
 
   const { data } = useGetCommentsQuery(feedback["_id"]);
-
-  useEffect(() => {
-    // setSelected(feedback.likes.includes(username));
-  }, []);
 
   return (
     <Card>
@@ -78,8 +76,10 @@ const Feedback = ({ feedback }) => {
       )}
 
       <UpvoteDiv>
-        {/* need to make an onclick that increments and decrements count */}
-        <UpvoteButton onClick={() => toggleUpvote()} selected={selected}>
+        <UpvoteButton
+          onClick={() => toggleVote()}
+          selected={feedback.isLiked}
+        >
           {feedback.upvotes}
         </UpvoteButton>
       </UpvoteDiv>

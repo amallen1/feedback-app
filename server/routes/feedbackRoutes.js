@@ -35,6 +35,7 @@ router.post("/api/add_suggestion", async (req, res) => {
       upvotes: 0,
       status: "Suggestion",
       description: description,
+      isLiked: false,
       comments: [],
     });
 
@@ -92,6 +93,7 @@ router.put("/api/:id/upvote", async (req, res) => {
         $inc: {
           upvotes: 1,
         },
+        $set: { isLiked: true}
       },
       {
         new: true,
@@ -122,10 +124,11 @@ router.put("/api/:id/downvote", async (req, res) => {
         $inc: {
           upvotes: -1,
         },
+        $set: { isLiked: false}
       },
       {
         new: true,
-      }
+      },
     ).exec((err, result) => {
       if (err) {
         return res.status(400).json({ error: err });

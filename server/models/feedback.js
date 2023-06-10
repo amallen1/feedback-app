@@ -6,6 +6,7 @@ const feedbackSchema = new mongoose.Schema({
   upvotes: { type: Number },
   status: { type: String, required: true },
   description: { type: String, required: true },
+  isLiked: { type: Boolean },
   likes: [{ type: String }],
   comments: [],
 });

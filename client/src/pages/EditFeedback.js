@@ -79,7 +79,6 @@ export const EditFeedback = () => {
   } = useForm();
 
   const update = () => {
-
     const data = {
       id: state["_id"],
       body: {
@@ -181,7 +180,7 @@ export const EditFeedback = () => {
               Save Changes
             </StyledButton>
 
-            <CancelButton as={Link} to="/" margin="true">
+            <CancelButton onClick={() => navigate(-1)} margin="true">
               Cancel
             </CancelButton>
           </ButtonWrapper>
