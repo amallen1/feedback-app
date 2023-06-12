@@ -2,7 +2,7 @@
 
 ## Welcome! 👋
 
-This is a full stack solution (MERN) to the [Product feedback app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a full stack solution (MERN) to the [Product feedback app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6).
 
 ![Design preview for the Product feedback app challenge](./preview.jpg)
 
@@ -26,14 +26,15 @@ This is a full stack solution (MERN) to the [Product feedback app challenge on F
 Users should be able to:
 
 - [x] View the optimal layout for the app depending on their device's screen size
-- [] See hover states for all interactive elements on the page
-- [] Create, read, update, and delete product feedback requests
-- [] Receive form validations when trying to create/edit feedback requests
+- [x] See hover states for all interactive elements on the page
+- [x] Create, read, update, and delete product feedback requests
+- [x] Receive form validations when trying to create/edit feedback requests
 - [x] Sort suggestions by most/least upvotes and most/least comments
 - [x] Filter suggestions by category
-- [] Add comments and replies to a product feedback request
-- [] Upvote product feedback requests on all pages
-- [] **Bonus**: Keep track of any changes, even after refreshing the browser
+- [x] Add comments to a product feedback request
+- [] Reply to a comment on a product feedback request
+- [x] Upvote product feedback requests on all pages
+- [x] **Bonus**: Keep track of any changes, even after refreshing the browser
 
 ### Screenshot
 
@@ -53,6 +54,7 @@ Users should be able to:
 - [Express](https://expressjs.com/)
 - [NodeJS](https://nodejs.dev/)
 - [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/)
 - [React Hook Form](https://react-hook-form.com/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
@@ -65,7 +67,7 @@ I also learned how to use Redux while building this application. Redux Toolkit i
 
 ### Continued development
 
-This application is still under development. At the moment a user can sort through the list of feedback items and add feedback while instantly seeing it added on the suggestions homepage. As development continues, users will be able to create accounts to upvote feedbacks and leave comments on feedback items. The roadmap page is also under development but in the future it will show an organized list of feedback suggestions that have a status of "Planned", "In-Progress", or "Live" similar to the application Trello.
+ At the moment a user create, read, update and delete suggestions and can sort through the list of feedback items on the suggestions homepage. Currently the only user on the application is the default "Guest/@GuestUser" to demonstrate how the application functions. As development continues, users will be able to create accounts under different names to upvote feedbacks and leave comments on feedback items. The roadmap page also shows an organized list of feedback suggestions that have a status of "Planned", "In-Progress", or "Live".
 
 ### Useful resources
 
