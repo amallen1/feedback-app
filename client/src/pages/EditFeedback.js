@@ -69,7 +69,7 @@ export const EditFeedback = () => {
   const statuses = ["Suggestion", "Planned", "In-progress", "Live"];
 
   const [updateSuggestion] = useUpdateSuggestionMutation();
-  const [deleteSuggestion, { isLoading }] = useDeleteSuggestionMutation();
+  const [deleteSuggestion] = useDeleteSuggestionMutation();
 
   const {
     register,

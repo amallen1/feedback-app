@@ -28,7 +28,6 @@ const FeedbackList = () => {
   const { data, isLoading } = useGetAllSuggestionsQuery();
 
   const [feedbackList, setFeedbackList] = useState(data);
-  console.log("rerendering!")
 
   const sortData = (copydata) => {
     let newData = [];

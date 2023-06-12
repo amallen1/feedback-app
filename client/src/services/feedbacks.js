@@ -11,9 +11,18 @@ export const feedbackApi = createApi({
       query: () => "/get_suggestions",
       providesTags: [{ type: "Suggestions", id: "LIST" }],
     }),
+    getSingleSuggestion: builder.query({
+      query: (id) => ({ url: `/get_single_suggestion/${id}` }),
+      providesTags: [{ type: "Suggestions", id: "LIST" }],
+    }),
     getRoadmapFeedbacks: builder.query({
       query: () => "/get_feedbacks",
-      providesTags: ["Planned", "In-progress", "Live"],
+      providesTags: [
+        { type: "Suggestions", id: "LIST" },
+        "Planned",
+        "In-progress",
+        "Live",
+      ],
     }),
     addSuggestion: builder.mutation({
       query(body) {
@@ -50,7 +59,12 @@ export const feedbackApi = createApi({
           method: "DELETE",
         };
       },
-      invalidatesTags: [{ type: "Suggestions", id: "LIST" }],
+      invalidatesTags: [
+        { type: "Suggestions", id: "LIST" },
+        "Planned",
+        "In-progress",
+        "Live",
+      ],
     }),
     upvoteSuggestion: builder.mutation({
       query(data) {
@@ -97,6 +111,7 @@ export const feedbackApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useGetAllSuggestionsQuery,
+  useGetSingleSuggestionQuery,
   useGetRoadmapFeedbacksQuery,
   useAddSuggestionMutation,
   useUpdateSuggestionMutation,

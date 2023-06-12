@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FilterButton, UpvoteButton } from "../../styles/reusable/Button";
@@ -26,11 +26,8 @@ const Feedback = ({ feedback }) => {
   const [downvote] = useDownvoteSuggestionMutation();
 
   const username = useSelector((state) => state.user.value.username);
-  // console.log(username);
-  // console.log(`${feedback.title}: ${feedback.isLiked}`);
 
   const toggleVote = () => {
-    // console.log('asswipe')
     const data = {
       id: feedback["_id"],
       body: {
@@ -40,11 +37,11 @@ const Feedback = ({ feedback }) => {
 
     if (feedback.isLiked) {
       setSelected(!selected);
-      console.log("downvoting")
+      console.log("downvoting");
       downvote(data).catch((error) => console.log(error));
     } else {
       setSelected(!selected);
-      console.log("upvoting")
+      console.log("upvoting");
       upvote(data)
         .then((res) => {
           // if (res.data.likes.includes(username)) {
@@ -60,7 +57,7 @@ const Feedback = ({ feedback }) => {
   return (
     <Card>
       {pathname === "/" || pathname === "/roadmap" ? (
-        <StyledLink to={`/feedback/${feedback["_id"]}`} state={feedback}>
+        <StyledLink to={`/feedback/${feedback["_id"]}`} state={feedback["_id"]}>
           <MainInfo>
             <Title>{feedback.title}</Title>
             <Description>{feedback.description}</Description>
@@ -76,10 +73,7 @@ const Feedback = ({ feedback }) => {
       )}
 
       <UpvoteDiv>
-        <UpvoteButton
-          onClick={() => toggleVote()}
-          selected={feedback.isLiked}
-        >
+        <UpvoteButton onClick={() => toggleVote()} selected={feedback.isLiked}>
           {feedback.upvotes}
         </UpvoteButton>
       </UpvoteDiv>
