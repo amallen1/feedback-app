@@ -53,7 +53,7 @@ const SuggestionsHeader = () => {
     <Container>
       <Header>
         <HeaderContent>
-          {width >= 768 && (
+          {/* {width >= 768 && (
             <div>
               {name !== "Guest" ? (
                 <Button onClick={() => dispatch(logout())}>Logout</Button>
@@ -69,7 +69,7 @@ const SuggestionsHeader = () => {
                 </LinkWrapper>
               )}
             </div>
-          )}
+          )} */}
 
           <div>
             <Title>Welcome, {name ? name : "Guest"}</Title>

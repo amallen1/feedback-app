@@ -7,6 +7,9 @@ export const CommentContainer = styled.div`
   margin: 1.5rem 0;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #8c92b33e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   ${({ padding }) =>
     padding &&

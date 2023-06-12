@@ -12,6 +12,17 @@ router.get("/api/get_suggestions", async (req, res) => {
   }
 });
 
+router.get("/api/get_single_suggestion/:id", async (req, res) => {
+  //find single suggestion
+  const { id } = req.params;
+  try {
+    const feedbackItem = await Feedback.findOne({ _id: id });
+    res.status(200).json(feedbackItem);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.get("/api/get_feedbacks", async (req, res) => {
   //find all comments with status of planned, in progess, and live
   try {
@@ -35,6 +46,7 @@ router.post("/api/add_suggestion", async (req, res) => {
       upvotes: 0,
       status: "Suggestion",
       description: description,
+      isLiked: false,
       comments: [],
     });
 
@@ -70,10 +82,7 @@ router.delete("/api/delete_suggestion/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    await Feedback.findByIdAndDelete({ _id: id }, () => {
-      console.log("Feedback deleted");
-    });
-
+    await Feedback.findByIdAndDelete({ _id: id }, () => {});
     res.json({ status: "ok" });
   } catch (err) {
     res.json({ status: "error", error: "Error deleting suggestion" });
@@ -92,6 +101,7 @@ router.put("/api/:id/upvote", async (req, res) => {
         $inc: {
           upvotes: 1,
         },
+        $set: { isLiked: true },
       },
       {
         new: true,
@@ -122,6 +132,7 @@ router.put("/api/:id/downvote", async (req, res) => {
         $inc: {
           upvotes: -1,
         },
+        $set: { isLiked: false },
       },
       {
         new: true,
