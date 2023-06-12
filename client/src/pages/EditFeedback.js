@@ -93,7 +93,7 @@ export const EditFeedback = () => {
 
   const onSubmit = () => {
     update();
-    navigate("/");
+    navigate(-1);
   };
 
   const remove = () => {

@@ -104,6 +104,16 @@ export const feedbackApi = createApi({
       },
       invalidatesTags: [{ type: "Comments", id: "LIST" }],
     }),
+    deleteComment: builder.mutation({
+      query(data) {
+        const { postId, commentId } = data;
+        return {
+          url: `delete_comment/${postId}/${commentId}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: [{ type: "Comments", id: "LIST" }],
+    }),
   }),
 });
 
@@ -120,4 +130,5 @@ export const {
   useDownvoteSuggestionMutation,
   useAddCommentMutation,
   useGetCommentsQuery,
+  useDeleteCommentMutation,
 } = feedbackApi;
