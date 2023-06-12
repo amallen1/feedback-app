@@ -14,6 +14,7 @@ export const GlobalStyles = createGlobalStyle`${css`
     --orange: #f49f85;
     --brightBlue: #62bcfa;
     --darkButtonColor: #373f68;
+    --black: #000000;
 
     /* Buttons */
     --hoverPurple: #c75af6;
@@ -30,12 +31,6 @@ export const GlobalStyles = createGlobalStyle`${css`
     padding: 0;
     box-sizing: border-box;
     font-family: "Jost", sans-serif;
-  }
-
-  html,
-  body {
-    min-height: 100vh;
-    overflow: auto;
   }
 
   body {

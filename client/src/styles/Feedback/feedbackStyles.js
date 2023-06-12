@@ -41,7 +41,6 @@ export const Title = styled.h3`
   @media (min-width: 768px) {
     font-size: 1.125rem;
     letter-spacing: -0.25px;
-    /* line-height: auto; */
   }
 `;
 
@@ -56,6 +55,8 @@ export const Description = styled.p`
     margin-bottom: 0.75rem;
   }
 `;
+
+export const Status = styled(Description)``;
 
 export const CommentButton = styled.div`
   background-color: transparent;

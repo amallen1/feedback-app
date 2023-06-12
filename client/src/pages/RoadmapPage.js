@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 
 import { BackButton, StyledButton } from "../styles/reusable/Button";
 
@@ -78,20 +78,16 @@ export const RoadmapPage = () => {
     { name: "Live", selected: false },
   ]);
 
-  const { data } = useGetRoadmapFeedbacksQuery(undefined, {
+  const { data, isLoading } = useGetRoadmapFeedbacksQuery(undefined, {
     selectFromResult: ({ data }) => ({
       data: data?.filter((item) => item.status === status),
     }),
   });
 
-  console.log(data);
-
   const toggle = (value) => {
     setStatus(value.name);
 
     let copyArray = [...selected];
-
-    console.log(copyArray);
 
     copyArray.forEach((item) => (item.selected = false));
     const selectedCat = copyArray.find((el) => el.name === value.name);
@@ -99,15 +95,15 @@ export const RoadmapPage = () => {
       selectedCat.selected = true;
     }
 
-    console.log(selected);
     setSelected(copyArray);
   };
 
-  const items = selected.map((item) => {
+  const items = selected.map((item, index) => {
     return (
       <Section
         onClick={() => toggle(item)}
         selected={item.selected}
+        key={index}
       >{`${item.name}`}</Section>
     );
   });
@@ -127,29 +123,10 @@ export const RoadmapPage = () => {
         </StyledButton>
       </Header>
 
-      <Categories>
-        {items}
-        {/* <Section
-          onClick={() => toggle("Planned")}
-        >
-          Planned{" "}
-        </Section>
-        <Section
-          onClick={() => toggle("In-progress")}
-        
-        >
-          In Progress
-        </Section>
-        <Section
-          onClick={() => toggle("Live")}
-          
-        >
-          Live{" "}
-        </Section> */}
-      </Categories>
+      <Categories>{items}</Categories>
 
       <Content>
-        {data && data.length > 0
+        {!isLoading && data && data.length > 0
           ? data.map((item, index) => {
               return <Feedback feedback={item} key={index} />;
             })

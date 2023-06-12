@@ -66,10 +66,10 @@ export const EditFeedback = () => {
   const [description, setDescription] = useState(state.description);
 
   const categories = ["Feature", "UI", "UX", "Enhancement", "Bug"];
-  const statuses = ["Suggestion", "Planned", "In-Progress", "Live"];
+  const statuses = ["Suggestion", "Planned", "In-progress", "Live"];
 
   const [updateSuggestion] = useUpdateSuggestionMutation();
-  const [deleteSuggestion, { isLoading }] = useDeleteSuggestionMutation();
+  const [deleteSuggestion] = useDeleteSuggestionMutation();
 
   const {
     register,
@@ -79,11 +79,6 @@ export const EditFeedback = () => {
   } = useForm();
 
   const update = () => {
-    console.log(title);
-    console.log(category);
-    console.log(status);
-    console.log(description);
-
     const data = {
       id: state["_id"],
       body: {
@@ -98,7 +93,7 @@ export const EditFeedback = () => {
 
   const onSubmit = () => {
     update();
-    navigate("/");
+    navigate(-1);
   };
 
   const remove = () => {
@@ -185,7 +180,7 @@ export const EditFeedback = () => {
               Save Changes
             </StyledButton>
 
-            <CancelButton as={Link} to="/" margin="true">
+            <CancelButton onClick={() => navigate(-1)} margin="true">
               Cancel
             </CancelButton>
           </ButtonWrapper>

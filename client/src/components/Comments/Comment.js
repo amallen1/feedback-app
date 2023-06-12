@@ -3,29 +3,52 @@ import {
   CommentHeader,
   Button,
 } from "../../styles/Comments/commentStyles";
+import { useDeleteCommentMutation } from "../../services/feedbacks";
+import { useSelector } from "react-redux";
 
-const Comment = ({ comment }) => {
+const Comment = ({ data, comment }) => {
+  const user = useSelector((state) => state.user.value.name);
+  const [deleteComment] = useDeleteCommentMutation();
+
+  const remove = () => {
+    const info = {
+      postId: data["_id"],
+      commentId: comment["_id"],
+    };
+    deleteComment(info)
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+  };
   return (
     <CommentContainer>
-      <CommentHeader>
-        {/* <Image src={`.${comment.user.image}`} alt="image of person" /> */}
-        <div>
-          <h5>{comment.user.name}</h5>
-          <p>@{comment.user.username}</p>
-        </div>
+      <div>
+        <CommentHeader>
+          {/* <Image src={`.${comment.user.image}`} alt="image of person" /> */}
+          <div>
+            <h5>{comment.user.name}</h5>
+            <p>@{comment.user.username}</p>
+          </div>
 
-        {/* TODO: implement replying feature */}
-        {/* <Button>Reply</Button> */}
-      </CommentHeader>
+          {/* TODO: implement replying feature */}
+          {/* <Button>Reply</Button> */}
+        </CommentHeader>
 
-      {/* {replyingTo ? (
+        {/* {replyingTo ? (
         <p>
           <Span>@{replyingTo}</Span>
           {comment}
         </p>
       ) : null} */}
+        <p>{comment.content}</p>
+      </div>
 
-      <p>{comment.content}</p>
+      {user === comment.user.name && (
+        <div>
+          <button style={{ padding: "3px" }} onClick={() => remove()}>
+            Delete
+          </button>
+        </div>
+      )}
     </CommentContainer>
   );
 };

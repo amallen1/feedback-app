@@ -15,7 +15,7 @@ const CommentList = ({ feedback }) => {
       </Heading>
       {comments &&
         comments.map((comment, index) => {
-          return <Comment comment={comment} key={index} />;
+          return <Comment data={feedback} comment={comment} key={index} />;
         })}
     </Container>
   );
