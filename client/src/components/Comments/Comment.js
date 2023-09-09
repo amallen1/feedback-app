@@ -44,9 +44,9 @@ const Comment = ({ data, comment }) => {
 
       {user === comment.user.name && (
         <div>
-          <button style={{ padding: "3px" }} onClick={() => remove()}>
+          <Button onClick={() => remove()}>
             Delete
-          </button>
+          </Button>
         </div>
       )}
     </CommentContainer>

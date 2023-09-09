@@ -82,6 +82,7 @@ export const FeedbackDetail = () => {
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
     setMessage("");
+    setCharCount(MAX_LENGTH );
   };
 
   return (

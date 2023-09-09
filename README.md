@@ -38,7 +38,9 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+| Mobile (375px)                                 | Desktop (1440px)                                 |
+| ---------------------------------------------- | ------------------------------------------------ |
+| ![Mobile](./screenshots/mobile_screenshot.png) | ![Desktop](./screenshots/desktop_screenshot.png) |
 
 ### Links
 
@@ -63,7 +65,7 @@ Users should be able to:
 
 I learned how to easily handle form validation using React Hook Form. It cut down the amount of code I had to write in order to achieve the same results which include forms that handle input errors appropriately, preventing invalid data from being submitted.
 
-I also learned how to use Redux while building this application. Redux Toolkit is the recommended way to develop with Redux and while its been difficult to understand, after experimenting with it I've come to like it alot. Redux helps to store state that is used in several components in one store for easy access anywhere in the application. RTK Query has also been interesting to use, as it simplifies getting and adding data from the server as it takes care of HTTP requests for me automatically as long as I provide the correct baseurl and endpoints. It also updates right away when it finds out data on the server has been mutated so that it matches data in the cache.
+I also learned how to use Redux while building this application. Redux Toolkit is the recommended way to develop with Redux and while it was challenging to understand, after experimenting with it I've come to like it alot. Redux helps to store state that is used in several components in one store for easy access anywhere in the application. RTK Query has also been interesting to use, as it simplifies getting and adding data from the server as it takes care of HTTP requests for me automatically as long as I provide the correct baseurl and endpoints. It also updates right away when it finds out data on the server has been mutated so that it matches data in the cache.
 
 ### Continued development
 
