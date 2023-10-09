@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "doppler run node index.js",
+    "start": "run node index.js",
     "dev": "doppler run nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
