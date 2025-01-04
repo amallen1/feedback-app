@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const feedbackApi = createApi({
   reducerPath: "feedbackApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.REACT_APP_BASE_URL}/api`,
+    // baseUrl: `${process.env.REACT_APP_BASE_URL}/api`,
   }),
   tagTypes: ["Suggestions", "Comments", "Planned", "In-progress", "Live"],
   endpoints: (builder) => ({
