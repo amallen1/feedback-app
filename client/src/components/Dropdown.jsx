@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled, { css } from "styled-components/macro";
+import styled, { css } from "styled-components";
 
 const DropDownContainer = styled.div`
   position: relative;
@@ -15,7 +15,7 @@ const DropDownHeader = styled.div`
   cursor: pointer;
   font-size: 13px;
 
-  :after {
+  &:after {
     content: url("/assets/shared/icon-arrow-down.svg");
   }
 
@@ -63,7 +63,7 @@ const ListItem = styled.li`
     border: none;
   }
 
-  :hover {
+  &:hover {
     color: var(--brightPurple);
   }
 `;

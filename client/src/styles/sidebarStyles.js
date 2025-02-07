@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 export const Search = styled.div`
   background-color: var(--white);
@@ -37,7 +37,7 @@ export const ViewLink = styled.a`
   font-weight: 600;
   text-decoration: underline;
 
-  :hover {
+  &:hover {
     color: #8397f8;
   }
 `;
@@ -60,7 +60,7 @@ export const ListItem = styled.li`
   font-weight: 400;
   color: var(--lighterDarkBlue);
 
-  ::before {
+  &::before {
     padding: inherit;
     content: "";
     position: absolute;

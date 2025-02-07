@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import { StyledButton } from "../../styles/reusable/Button";
 import { Link } from "react-router-dom";
 import useWindowDimensions from "../../hooks/window";
@@ -44,9 +44,13 @@ const Search = styled.p`
   font-size: 0.8125rem;
   cursor: pointer;
 
-  ::after {
+  &::after {
     content: url("/assets/shared/white-arrow.svg");
     margin-left: 7px;
+  }
+
+  &:hover {
+    opacity: 75%;
   }
 
   span {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useGetAllSuggestionsQuery } from "../../services/feedbacks";
-import styled from "styled-components/macro";
+import styled from "styled-components/";
 
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";

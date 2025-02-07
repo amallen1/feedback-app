@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 
 import { BackButton, StyledButton } from "../styles/reusable/Button";
@@ -43,7 +43,7 @@ const Categories = styled.div`
 
   padding: 1.25rem;
 
-  :after {
+  &:after {
     content: "";
     height: 1px;
     width: 100%;

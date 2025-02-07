@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Card = styled.div`
@@ -10,7 +10,7 @@ export const Card = styled.div`
 
   ${({ border }) => border && `border-top: 6px solid black;`}
 
-  :hover h3 {
+  &:hover h3 {
     color: var(--royalBlue);
   }
 
@@ -65,7 +65,7 @@ export const CommentButton = styled.div`
   font-weight: 700;
   display: flex;
 
-  ::before {
+  &::before {
     content: url("/assets/shared/icon-comments.svg");
     margin-right: 6px;
   }
