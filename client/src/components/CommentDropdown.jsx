@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components/macro";
+import styled, { css } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { changeSortingCategory } from "../features/feedbacks/sortSlice";
 
@@ -28,7 +28,7 @@ const ListItem = styled.li`
     border: none;
   }
 
-  :hover {
+  &:hover {
     color: var(--brightPurple);
   }
 `;

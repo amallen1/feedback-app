@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 // Styles for Login.js and SignUp.js
 
@@ -63,7 +63,7 @@ export const FormButton = styled.button`
   color: var(--buttonTextColor);
   font-weight: 700;
 
-  :hover {
+  &:hover {
     background-color: var(--hoverPurple);
   }
 

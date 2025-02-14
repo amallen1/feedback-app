@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components/macro";
+import styled, { css } from "styled-components";
 import { Input, TextArea } from "../styles/reusable/Forms";
 
 export const StyledButton = styled.button`
@@ -15,14 +15,14 @@ export const StyledButton = styled.button`
   ${({ plus }) =>
     plus &&
     `
-      ::before {
+      &::before {
         content: url("/assets/shared/icon-plus.svg");
         margin-right: 4px;
       }
     `}
   ${({ margin }) => margin && { marginBottom: "1rem" }}
   
-  :hover {
+  &:hover {
     background-color: var(--hoverPurple);
   }
 
