@@ -11,8 +11,13 @@ export default defineConfig(({ mode }) => {
         },
       }),
     ],
-    define: {
-      "process.env.API_BASE_URL": JSON.stringify(env.API_BASE_URL),
+    server: {
+      proxy: {
+        "/api": {
+          target: env.API_BASE_URL,
+          changeOrigin: true, 
+        },
+      },
     },
   };
 });
