@@ -9,12 +9,12 @@
     "jsx": "react-jsx",
     "allowJs": true,
     "noEmit": true,
-    "isolatedModules": true, 
-    "lib": ["esnext", "dom", "dom.iterable", "es2020"], 
+    "isolatedModules": true,
+    "lib": ["esnext", "dom", "dom.iterable", "es2020"],
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["vite/client"], 
+    "types": ["vite/client", "node", "@testing-library/jest-dom"]
   },
-  "include": ["src"],
+  "include": ["src", "setupTests.ts"],
   "exclude": ["node_modules"]
 }

@@ -15,9 +15,14 @@ export default defineConfig(({ mode }) => {
       proxy: {
         "/api": {
           target: env.API_BASE_URL,
-          changeOrigin: true, 
+          changeOrigin: true,
         },
       },
+    },
+    test: {
+      environment: "jsdom",
+      globals: true,
+      setupFiles: ["./setupTests.ts"],
     },
   };
 });
