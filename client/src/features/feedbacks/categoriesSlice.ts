@@ -1,6 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import type { RootState } from "../../app/store";
 
-const initialState = [
+// Define a type for the slice state
+interface CategoryState {
+  name: string;
+  selected: boolean;
+}
+
+// Define the initial state using that type
+const initialState: CategoryState[] = [
   { name: "All", selected: true },
   { name: "UI", selected: false },
   { name: "UX", selected: false },
@@ -11,9 +20,10 @@ const initialState = [
 
 const categoriesSlice = createSlice({
   name: "categories",
+  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    categorySelected(state, action) {
+    categorySelected(state, action: PayloadAction<string>) {
       state.forEach((item) => (item.selected = false));
       const selectedCat = state.find((el) => el.name === action.payload);
       if (selectedCat) {

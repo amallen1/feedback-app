@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import useWindowDimensions from "../../hooks/window";
 import CommentDropdown from "../CommentDropdown";
 import { useGetAllSuggestionsQuery } from "../../services/feedbacks";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../app/hooks";
 
 const SubheaderContainer = styled.div`
   display: flex;
@@ -69,8 +69,9 @@ const Subheader = () => {
     "Least Comments",
   ];
 
-  const filterCategory = useSelector(
-    (state) => state.categories.find(({ selected }) => selected === true).name
+  const filterCategory = useAppSelector(
+    (state) =>
+      state.categories.find(({ selected }) => selected === true)?.name ?? "All"
   );
 
   const { data } = useGetAllSuggestionsQuery(undefined, {
@@ -102,7 +103,7 @@ const Subheader = () => {
         isOpen={isOpen}
       />
 
-      <StyledButton plus="true" as={Link} to="/newfeedback">
+      <StyledButton plus={true} as={Link} to="/newfeedback">
         Add feedback
       </StyledButton>
     </SubheaderContainer>

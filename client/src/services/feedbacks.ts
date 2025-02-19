@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import type { Feedback } from "../types/FeedbackInterface";
 
 export const feedbackApi = createApi({
   reducerPath: "feedbackApi",
@@ -7,7 +8,7 @@ export const feedbackApi = createApi({
   }),
   tagTypes: ["Suggestions", "Comments", "Planned", "In-progress", "Live"],
   endpoints: (builder) => ({
-    getAllSuggestions: builder.query({
+    getAllSuggestions: builder.query<Feedback[], void>({
       query: () => "/get_suggestions",
       providesTags: [{ type: "Suggestions", id: "LIST" }],
     }),

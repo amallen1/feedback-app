@@ -4,7 +4,7 @@ import categoryReducer from "../features/feedbacks/categoriesSlice";
 import sortingCategoryReducer from "../features/feedbacks/sortSlice";
 import userReducer from "../features/user/userSlice";
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
     // Add the generated reducer as a specific top-level slice
     [feedbackApi.reducerPath]: feedbackApi.reducer,
@@ -18,3 +18,11 @@ export default configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(feedbackApi.middleware),
 });
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>
+
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
+
+
