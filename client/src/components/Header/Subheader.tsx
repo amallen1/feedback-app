@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { StyledButton } from "../../styles/reusable/Button";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import useWindowDimensions from "../../hooks/window";
-import CommentDropdown from "../CommentDropdown";
-import { useGetAllSuggestionsQuery } from "../../services/feedbacks";
+import styled from "styled-components";
 import { useAppSelector } from "../../app/hooks";
+import useWindowDimensions from "../../hooks/window";
+import { useGetAllSuggestionsQuery } from "../../services/feedbacks";
+import { StyledButton } from "../../styles/reusable/Button";
+import SortOptionsDropdown from "../SortOptionsDropdown";
 
 const SubheaderContainer = styled.div`
   display: flex;
@@ -40,12 +40,17 @@ const Suggestions = styled.div`
   }
 `;
 
-const Search = styled.p`
+const Filter = styled.button<{ $isDropdownOpen: boolean }>`
+  background-color: transparent;
+  color: var(--white);
   font-size: 0.8125rem;
   cursor: pointer;
 
   &::after {
-    content: url("/assets/shared/white-arrow.svg");
+    content: ${(props) =>
+      props.$isDropdownOpen
+        ? `url("/assets/shared/white-up-arrow.svg")`
+        : `url("/assets/shared/white-arrow.svg")`};
     margin-left: 7px;
   }
 
@@ -61,15 +66,15 @@ const Search = styled.p`
 const Subheader = () => {
   const { width } = useWindowDimensions();
   const [isOpen, setIsOpen] = useState(false);
-  const [category, setCategory] = useState("Most Upvotes");
-  const categories = [
+  const [sortOption, setSortOption] = useState("Most Upvotes");
+  const sortOptions = [
     "Most Upvotes",
     "Least Upvotes",
     "Most Comments",
     "Least Comments",
   ];
 
-  const filterCategory = useAppSelector(
+  const feedbackCategory = useAppSelector(
     (state) =>
       state.categories.find(({ selected }) => selected === true)?.name ?? "All"
   );
@@ -77,9 +82,9 @@ const Subheader = () => {
   const { data } = useGetAllSuggestionsQuery(undefined, {
     selectFromResult: ({ data }) => ({
       data:
-        filterCategory === "All"
+        feedbackCategory === "All"
           ? data
-          : data?.filter((item) => item.category === filterCategory),
+          : data?.filter((feedback) => feedback.category === feedbackCategory),
     }),
   });
 
@@ -87,24 +92,27 @@ const Subheader = () => {
     <SubheaderContainer>
       {width >= 768 ? (
         <Suggestions>
-          <img src="/assets/suggestions/icon-suggestions.svg" alt="" />
-          <span> {data ? data.length : null} Suggestions</span>
+          <img
+            src="/assets/suggestions/icon-suggestions.svg"
+            alt="Lightbulb icon"
+          />
+          <span> {data ? data.length : 0} Suggestions</span>
         </Suggestions>
       ) : null}
 
-      <Search onClick={() => setIsOpen(!isOpen)}>
-        Sort by : <span>{category}</span>
-      </Search>
+      <Filter onClick={() => setIsOpen(!isOpen)} $isDropdownOpen={isOpen}>
+        Sort by : <span>{sortOption}</span>
+      </Filter>
 
-      <CommentDropdown
-        categories={categories}
-        setCategory={setCategory}
+      <SortOptionsDropdown
+        sortOptions={sortOptions}
+        setSortOption={setSortOption}
         setIsOpen={setIsOpen}
         isOpen={isOpen}
       />
 
-      <StyledButton plus={true} as={Link} to="/newfeedback">
-        Add feedback
+      <StyledButton $plus as={Link} to="/newfeedback">
+        Add Feedback
       </StyledButton>
     </SubheaderContainer>
   );

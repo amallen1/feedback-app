@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
 import { changeSortingCategory } from "../features/feedbacks/sortSlice";
 
 const DropdownContainer = styled.div`
@@ -33,20 +33,25 @@ const ListItem = styled.li`
   }
 `;
 
-const Dropdown = ({ categories, setCategory, isOpen, setIsOpen }) => {
+const SortOptionsDropdown = ({
+  sortOptions,
+  setSortOption,
+  isOpen,
+  setIsOpen,
+}) => {
   const dispatch = useDispatch();
 
   const onOptionClicked = (value) => {
     // console.log(value);
     setIsOpen(false);
-    setCategory(value);
+    setSortOption(value);
     dispatch(changeSortingCategory(value));
   };
 
-  const items = categories.map((category, index) => {
+  const items = sortOptions.map((option, index) => {
     return (
-      <ListItem key={index} onClick={() => onOptionClicked(category)}>
-        {category}
+      <ListItem key={index} onClick={() => onOptionClicked(option)}>
+        {option}
       </ListItem>
     );
   });
@@ -54,4 +59,4 @@ const Dropdown = ({ categories, setCategory, isOpen, setIsOpen }) => {
   return <DropdownContainer>{isOpen && <ul>{items}</ul>}</DropdownContainer>;
 };
 
-export default Dropdown;
+export default SortOptionsDropdown;

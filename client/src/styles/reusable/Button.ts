@@ -1,7 +1,7 @@
 import styled from "styled-components/";
 
 interface ButtonProps {
-  plus?: boolean;
+  $plus?: boolean;
   margin?: boolean;
   selected?: boolean;
 }
@@ -18,8 +18,8 @@ export const StyledButton = styled.a<ButtonProps>`
   text-align: center;
   cursor: pointer;
 
-  ${({ plus }) =>
-    plus &&
+  ${(props) =>
+    props.$plus &&
     `
       &::before {
         content: url("/assets/shared/icon-plus.svg");
