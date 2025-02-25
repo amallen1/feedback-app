@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import categoryReducer from "../features/feedbacks/categoriesSlice";
-import sortingCategoryReducer from "../features/feedbacks/sortSlice";
+import sortOptionReducer from "../features/feedbacks/sortSlice";
 import userReducer from "../features/user/userSlice";
 import { feedbackApi } from "../services/feedbacks";
 import { RootState, AppStore } from "../app/store";
@@ -22,7 +22,7 @@ export function setupStore(preloadedState?: Partial<RootState>) {
     reducer: {
       [feedbackApi.reducerPath]: feedbackApi.reducer, // Include your API slice reducer
       categories: categoryReducer, // Import reducers
-      sortingCategories: sortingCategoryReducer,
+      sortOption: sortOptionReducer,
       user: userReducer,
     },
     middleware: (getDefaultMiddleware) =>

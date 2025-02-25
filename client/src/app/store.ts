@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import categoryReducer from "../features/feedbacks/categoriesSlice";
-import sortingCategoryReducer from "../features/feedbacks/sortSlice";
+import sortOptionReducer from "../features/feedbacks/sortSlice";
 import userReducer from "../features/user/userSlice";
 import { feedbackApi } from "../services/feedbacks";
 
@@ -9,7 +9,7 @@ export const store = configureStore({
     // Add the generated reducer as a specific top-level slice
     [feedbackApi.reducerPath]: feedbackApi.reducer,
     categories: categoryReducer,
-    sortingCategories: sortingCategoryReducer,
+    sortOption: sortOptionReducer,
     user: userReducer,
   },
 

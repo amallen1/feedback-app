@@ -40,7 +40,7 @@ const Suggestions = styled.div`
   }
 `;
 
-const Filter = styled.button<{ $isDropdownOpen: boolean }>`
+const FilterButton = styled.button<{ $isDropdownOpen: boolean }>`
   background-color: transparent;
   color: var(--white);
   font-size: 0.8125rem;
@@ -66,14 +66,8 @@ const Filter = styled.button<{ $isDropdownOpen: boolean }>`
 const Subheader = () => {
   const { width } = useWindowDimensions();
   const [isOpen, setIsOpen] = useState(false);
-  const [sortOption, setSortOption] = useState("Most Upvotes");
-  const sortOptions = [
-    "Most Upvotes",
-    "Least Upvotes",
-    "Most Comments",
-    "Least Comments",
-  ];
 
+  const sortOption = useAppSelector((state) => state.sortOption.value);
   const feedbackCategory = useAppSelector(
     (state) =>
       state.categories.find(({ selected }) => selected === true)?.name ?? "All"
@@ -100,16 +94,11 @@ const Subheader = () => {
         </Suggestions>
       ) : null}
 
-      <Filter onClick={() => setIsOpen(!isOpen)} $isDropdownOpen={isOpen}>
+      <FilterButton onClick={() => setIsOpen(!isOpen)} $isDropdownOpen={isOpen}>
         Sort by : <span>{sortOption}</span>
-      </Filter>
+      </FilterButton>
 
-      <SortOptionsDropdown
-        sortOptions={sortOptions}
-        setSortOption={setSortOption}
-        setIsOpen={setIsOpen}
-        isOpen={isOpen}
-      />
+      {isOpen && <SortOptionsDropdown setIsOpen={setIsOpen} />}
 
       <StyledButton $plus as={Link} to="/newfeedback">
         Add Feedback

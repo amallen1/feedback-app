@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { changeSortingCategory } from "../features/feedbacks/sortSlice";
+import { setSortOption } from "../features/feedbacks/sortSlice";
 
 const DropdownContainer = styled.div`
   position: absolute;
@@ -33,19 +33,19 @@ const ListItem = styled.li`
   }
 `;
 
-const SortOptionsDropdown = ({
-  sortOptions,
-  setSortOption,
-  isOpen,
-  setIsOpen,
-}) => {
+const SortOptionsDropdown = ({ setIsOpen }) => {
   const dispatch = useDispatch();
 
+  const sortOptions = [
+    "Most Upvotes",
+    "Least Upvotes",
+    "Most Comments",
+    "Least Comments",
+  ];
+
   const onOptionClicked = (value) => {
-    // console.log(value);
     setIsOpen(false);
-    setSortOption(value);
-    dispatch(changeSortingCategory(value));
+    dispatch(setSortOption(value));
   };
 
   const items = sortOptions.map((option, index) => {
@@ -56,7 +56,11 @@ const SortOptionsDropdown = ({
     );
   });
 
-  return <DropdownContainer>{isOpen && <ul>{items}</ul>}</DropdownContainer>;
+  return (
+    <DropdownContainer>
+      <ul>{items}</ul>
+    </DropdownContainer>
+  );
 };
 
 export default SortOptionsDropdown;

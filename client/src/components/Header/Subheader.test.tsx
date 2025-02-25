@@ -4,15 +4,15 @@ import { renderWithProviders } from "../../utils/test-utils";
 import Subheader from "./Subheader";
 
 describe("Subheader", () => {
-  // test("default sort option is Most Upvotes", () => {
-  //   renderWithProviders(<Subheader />);
+  test("default sort option is Most Upvotes", () => {
+    renderWithProviders(<Subheader />);
 
-  //   const sortButton = screen.getByRole("button", {
-  //     name: /Sort by : Most Upvotes/,
-  //   });
+    const sortButton = screen.getByRole("button", {
+      name: /Sort by : Most Upvotes/,
+    });
 
-  //   expect(sortButton).toBeInTheDocument();
-  // });
+    expect(sortButton).toBeInTheDocument();
+  });
 
   test("add feedback button renders", () => {
     renderWithProviders(<Subheader />);
