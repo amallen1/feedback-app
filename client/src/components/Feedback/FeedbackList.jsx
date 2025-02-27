@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useGetAllSuggestionsQuery } from "../../services/feedbacks";
 import styled from "styled-components/";
+import { useGetAllSuggestionsQuery } from "../../services/feedbacks";
 
-import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import EmptyFeedbackList from "./EmptyFeedbackList";
 import Feedback from "./Feedback";
 
@@ -23,7 +23,7 @@ const FeedbackList = () => {
     (state) => state.categories.find(({ selected }) => selected === true).name
   );
 
-  const sortingCategory = useSelector((state) => state.sortingCategories.value);
+  const sortOption = useSelector((state) => state.sortOption.value);
 
   const { data, isLoading } = useGetAllSuggestionsQuery();
 
@@ -35,11 +35,11 @@ const FeedbackList = () => {
     if (copydata) {
       newData = [...copydata];
 
-      if (sortingCategory === "Most Upvotes") {
+      if (sortOption === "Most Upvotes") {
         newData.sort((a, b) => b.upvotes - a.upvotes);
-      } else if (sortingCategory === "Least Upvotes") {
+      } else if (sortOption === "Least Upvotes") {
         newData.sort((a, b) => a.upvotes - b.upvotes);
-      } else if (sortingCategory === "Most Comments") {
+      } else if (sortOption === "Most Comments") {
         newData.sort((a, b) => b.comments.length - a.comments.length);
       } else {
         newData.sort((a, b) => a.comments.length - b.comments.length);
@@ -55,7 +55,7 @@ const FeedbackList = () => {
     } else {
       sortData(data?.filter((item) => item.category === category));
     }
-  }, [data, category, sortingCategory]);
+  }, [data, category, sortOption]);
 
   return (
     <Container>

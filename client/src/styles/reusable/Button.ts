@@ -1,7 +1,13 @@
-import styled, { css } from "styled-components/";
+import styled from "styled-components/";
+
+interface ButtonProps {
+  $plus?: boolean;
+  margin?: boolean;
+  selected?: boolean;
+}
 
 //Styles for buttons that navigate to a different page
-export const StyledButton = styled.a`
+export const StyledButton = styled.a<ButtonProps>`
   background-color: var(--brightPurple);
   color: var(--buttonTextColor);
   padding: 0.625rem 1rem;
@@ -12,8 +18,8 @@ export const StyledButton = styled.a`
   text-align: center;
   cursor: pointer;
 
-  ${({ plus }) =>
-    plus &&
+  ${(props) =>
+    props.$plus &&
     `
       &::before {
         content: url("/assets/shared/icon-plus.svg");
@@ -90,7 +96,7 @@ export const Button = styled.button`
   }
 `;
 
-export const FilterButton = styled.button`
+export const FilterButton = styled.button<ButtonProps>`
   padding: 0.3125rem 1rem 0.375rem;
   border-radius: 10px;
   background-color: ${({ selected }) =>
@@ -107,7 +113,7 @@ export const FilterButton = styled.button`
   ${({ margin }) => margin && { marginBottom: "1rem" }}
 `;
 
-export const UpvoteButton = styled.button`
+export const UpvoteButton = styled.button<ButtonProps>`
   background-color: ${({ selected }) =>
     selected ? "var(--royalBlue)" : "var(--lightGray)"};
   color: ${({ selected }) =>
