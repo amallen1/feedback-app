@@ -9,7 +9,7 @@ import {
   ProgressTracker,
   ProgressList,
   ListItem,
-} from "../../styles/sidebarStyles";
+} from "../../styles/roadmapStyles";
 
 const Roadmap = () => {
   //grab the roapma data

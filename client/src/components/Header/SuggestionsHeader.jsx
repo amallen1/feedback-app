@@ -1,21 +1,21 @@
 import { useState } from "react";
-import useWindowDimensions from "../../hooks/window";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../features/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../../features/user/userSlice";
+import useWindowDimensions from "../../hooks/window";
 
-import MobileMenu from "./MobileMenu";
-import Sidebar from "./Sidebar";
-import Roadmap from "./Roadmap";
 import styled from "styled-components";
 import {
   Container,
   Header,
   HeaderContent,
-  Title,
-  SecondaryTitle,
   Icon,
+  SecondaryTitle,
+  Title,
 } from "../../styles/headerStyles";
+import CategoryMenu from "./CategoryMenu";
+import MobileMenu from "./MobileMenu";
+import Roadmap from "./Roadmap";
 
 const Button = styled.button`
   color: white;
@@ -96,7 +96,7 @@ const SuggestionsHeader = () => {
         )}
       </Header>
 
-      {width >= 768 && <Sidebar />}
+      {width >= 768 && <CategoryMenu />}
       {width >= 768 && <Roadmap />}
 
       {isOpen && width < 768 && <MobileMenu toggle={setIsOpen} />}

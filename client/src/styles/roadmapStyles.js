@@ -1,20 +1,5 @@
 import styled from "styled-components";
 
-export const Search = styled.div`
-  background-color: var(--white);
-  padding: 1.5rem 1rem 2.25rem 1.5rem;
-  border-radius: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-  margin-bottom: 1.5rem;
-
-  @media (min-width: 768px) {
-    margin-bottom: 0;
-    flex: 1;
-  }
-`;
-
 export const RoadmapContainer = styled.div`
   background-color: var(--white);
   padding: 1.5rem;

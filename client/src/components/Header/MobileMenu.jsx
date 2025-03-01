@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { logout } from "../../features/user/userSlice";
-import { useSelector, useDispatch } from "react-redux";
 
-import Sidebar from "./Sidebar";
-import Roadmap from "./Roadmap";
 import { StyledButton } from "../../styles/reusable/Button";
+import CategoryMenu from "./CategoryMenu";
+import Roadmap from "./Roadmap";
 
 const Overlay = styled.div`
   background-color: var(--black);
@@ -80,7 +80,7 @@ const MobileMenu = ({ toggle }) => {
           </div>
         )}
 
-        <Sidebar />
+        <CategoryMenu />
         <Roadmap />
       </Menu>
     </div>
