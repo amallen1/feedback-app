@@ -47,6 +47,7 @@ export function renderWithProviders(
       <BrowserRouter
         future={{
           v7_startTransition: true,
+          v7_relativeSplatPath: true,
         }}
       >
         <Provider store={store}>{children}</Provider>
