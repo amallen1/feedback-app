@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 //Comment styles
 export const CommentContainer = styled.div`

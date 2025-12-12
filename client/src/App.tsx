@@ -1,17 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
-  Login,
-  SignUp,
-  Home,
-  RoadmapPage,
-  NewFeedback,
-  FeedbackDetail,
   EditFeedback,
+  FeedbackDetail,
+  Home,
+  Login,
+  NewFeedback,
+  RoadmapPage,
+  SignUp,
 } from "./pages";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter
+    future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+    >
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

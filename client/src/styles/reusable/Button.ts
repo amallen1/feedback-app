@@ -1,7 +1,13 @@
-import styled, { css } from "styled-components/macro";
+import styled from "styled-components/";
+
+interface ButtonProps {
+  $plus?: boolean;
+  margin?: boolean;
+  selected?: boolean;
+}
 
 //Styles for buttons that navigate to a different page
-export const StyledButton = styled.a`
+export const StyledButton = styled.a<ButtonProps>`
   background-color: var(--brightPurple);
   color: var(--buttonTextColor);
   padding: 0.625rem 1rem;
@@ -12,17 +18,17 @@ export const StyledButton = styled.a`
   text-align: center;
   cursor: pointer;
 
-  ${({ plus }) =>
-    plus &&
+  ${(props) =>
+    props.$plus &&
     `
-      ::before {
+      &::before {
         content: url("/assets/shared/icon-plus.svg");
         margin-right: 4px;
       }
     `}
   ${({ margin }) => margin && { marginBottom: "1rem" }}
   
-  :hover {
+  &:hover {
     background-color: var(--hoverPurple);
   }
 
@@ -34,31 +40,31 @@ export const StyledButton = styled.a`
 
 export const CancelButton = styled(StyledButton)`
   background-color: var(--lighterNavyBlue);
-  :hover {
+  &:hover {
     background-color: var(--hoverRoyalBlue);
   }
 `;
 
 export const DeleteButton = styled(StyledButton)`
   background-color: var(--brightRed);
-  :hover {
+  &:hover {
     background-color: var(--hoverRed);
   }
 `;
 
 export const EditButton = styled(StyledButton)`
   background-color: var(--royalBlue);
-  :hover {
+  &:hover {
     background-color: var(--hoverRoyalBlue);
   }
 `;
 
 export const BackButton = styled.button`
-  ::before {
+  &::before {
     content: url("/assets/shared/icon-arrow-left.svg");
     margin-right: 14px;
   }
-  :focus {
+  &:focus {
     text-decoration: underline;
   }
   text-decoration: none;
@@ -80,7 +86,7 @@ export const Button = styled.button`
   text-align: center;
   cursor: pointer;
 
-  :hover {
+  &:hover {
     background-color: var(--hoverPurple);
   }
 
@@ -90,7 +96,7 @@ export const Button = styled.button`
   }
 `;
 
-export const FilterButton = styled.button`
+export const FilterButton = styled.button<ButtonProps>`
   padding: 0.3125rem 1rem 0.375rem;
   border-radius: 10px;
   background-color: ${({ selected }) =>
@@ -98,16 +104,16 @@ export const FilterButton = styled.button`
   font-weight: 600;
   color: ${({ selected }) =>
     selected ? "var(--lightGray)" : "var(--royalBlue)"};
-  font-size: .8125rem;
+  font-size: 0.8125rem;
 
-  :hover {
+  &:hover {
     background-color: var(--paleBlue);
   }
 
   ${({ margin }) => margin && { marginBottom: "1rem" }}
 `;
 
-export const UpvoteButton = styled.button`
+export const UpvoteButton = styled.button<ButtonProps>`
   background-color: ${({ selected }) =>
     selected ? "var(--royalBlue)" : "var(--lightGray)"};
   color: ${({ selected }) =>
@@ -120,19 +126,19 @@ export const UpvoteButton = styled.button`
   display: flex;
   justify-content: space-evenly;
 
-  :before {
+  &:before {
     content: url("/assets/shared/icon-arrow-up.svg");
   }
 
   ${({ selected }) =>
     selected &&
-    css`
-      :before {
+    `
+      &::before {
         content: url("/assets/shared/white-up-arrow.svg");
       }
     `}
 
-  :hover {
+  &:hover {
     background-color: var(--paleBlue);
   }
 

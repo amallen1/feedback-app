@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { logout } from "../../features/user/userSlice";
 import { useSelector, useDispatch } from "react-redux";

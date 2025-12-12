@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import MobileMenu from "./MobileMenu";
 import Sidebar from "./Sidebar";
 import Roadmap from "./Roadmap";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import {
   Container,
   Header,
@@ -22,7 +22,7 @@ const Button = styled.button`
   font-weight: 700;
   background-color: transparent;
 
-  :hover {
+  &:hover {
     text-decoration: underline;
   }
 `;
@@ -36,7 +36,7 @@ const StyledLink = styled.a`
   color: white;
   font-weight: 700;
 
-  :hover {
+  &:hover {
     text-decoration: underline;
   }
 `;

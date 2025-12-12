@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";

@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 export const HomeContainer = styled.div`
   @media (min-width: 768px) {

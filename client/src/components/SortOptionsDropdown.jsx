@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components/macro";
-import { useSelector, useDispatch } from "react-redux";
-import { changeSortingCategory } from "../features/feedbacks/sortSlice";
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
+import { setSortOption } from "../features/feedbacks/sortSlice";
 
 const DropdownContainer = styled.div`
   position: absolute;
@@ -28,30 +28,39 @@ const ListItem = styled.li`
     border: none;
   }
 
-  :hover {
+  &:hover {
     color: var(--brightPurple);
   }
 `;
 
-const Dropdown = ({ categories, setCategory, isOpen, setIsOpen }) => {
+const SortOptionsDropdown = ({ setIsOpen }) => {
   const dispatch = useDispatch();
 
+  const sortOptions = [
+    "Most Upvotes",
+    "Least Upvotes",
+    "Most Comments",
+    "Least Comments",
+  ];
+
   const onOptionClicked = (value) => {
-    // console.log(value);
     setIsOpen(false);
-    setCategory(value);
-    dispatch(changeSortingCategory(value));
+    dispatch(setSortOption(value));
   };
 
-  const items = categories.map((category, index) => {
+  const items = sortOptions.map((option, index) => {
     return (
-      <ListItem key={index} onClick={() => onOptionClicked(category)}>
-        {category}
+      <ListItem key={index} onClick={() => onOptionClicked(option)}>
+        {option}
       </ListItem>
     );
   });
 
-  return <DropdownContainer>{isOpen && <ul>{items}</ul>}</DropdownContainer>;
+  return (
+    <DropdownContainer>
+      <ul>{items}</ul>
+    </DropdownContainer>
+  );
 };
 
-export default Dropdown;
+export default SortOptionsDropdown;
