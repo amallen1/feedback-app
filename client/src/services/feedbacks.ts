@@ -4,7 +4,7 @@ import type { Feedback } from "../types/FeedbackInterface";
 export const feedbackApi = createApi({
   reducerPath: "feedbackApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `/api`,
+    baseUrl: import.meta.env.VITE_API_BASE_URL || `/api`,
   }),
   tagTypes: ["Suggestions", "Comments", "Planned", "In-progress", "Live"],
   endpoints: (builder) => ({

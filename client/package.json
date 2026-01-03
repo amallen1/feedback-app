@@ -1,6 +1,7 @@
 {
   "name": "newproductfeedback",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.0",
@@ -30,6 +31,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "babel-plugin-styled-components": "^2.1.4",
     "jsdom": "^26.0.0",
+    "msw": "^2.12.7",
     "styled-components": "^6.1.14",
     "typescript": "^5.2.0",
     "vite": "^6.0.7",
